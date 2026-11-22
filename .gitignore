@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+.idea/
+__pycache__/
+/single-node/certs/
+/single-node/measurements/
+/single-node/pilot/
+/single-node/server-package/
+*.nupkg

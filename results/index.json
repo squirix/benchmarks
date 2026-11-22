@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "cache": [
+    {
+      "version": "v0.1.0-preview.10",
+      "date": "2026-11-22",
+      "series": "Single-node 95/5 · Docker Desktop loopback · series 1",
+      "setup": "Shared Docker Desktop VM · loopback TLS · 4 server vCPUs · 95% GET / 5% SET · 256-byte JSON values",
+      "referenceLoad": 5000,
+      "report": "runs/single-node-v0.1.0-preview.10-2026-11-22/",
+      "systems": [
+        {
+          "name": "Squirix",
+          "version": "0.1.0-preview.10",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.587217
+            },
+            {
+              "offered": 5000,
+              "p99": 0.834216
+            },
+            {
+              "offered": 8000,
+              "p99": 1.442421
+            }
+          ]
+        },
+        {
+          "name": "Garnet",
+          "version": "2.2.13",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 11.343057
+            },
+            {
+              "offered": 5000,
+              "p99": 0.354696
+            },
+            {
+              "offered": 8000,
+              "p99": 0.389856
+            }
+          ]
+        },
+        {
+          "name": "Valkey",
+          "version": "9.2.0",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.339109
+            },
+            {
+              "offered": 5000,
+              "p99": 0.336725
+            },
+            {
+              "offered": 8000,
+              "p99": 0.307624
+            }
+          ]
+        },
+        {
+          "name": "Redis",
+          "version": "8.10.3",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.363721
+            },
+            {
+              "offered": 5000,
+              "p99": 23.092475
+            },
+            {
+              "offered": 8000,
+              "p99": 30.77797
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "quorum": []
+}
