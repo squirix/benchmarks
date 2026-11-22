@@ -1,53 +1,45 @@
-import json
 import math
 import re
 from datetime import date
 from pathlib import Path
-from statistics import median
+
+from benchmark_results import load, require, summarize
 
 
 ROOT = Path(__file__).resolve().parents[1] / "results"
 REPORT = re.compile(r"runs/[a-zA-Z0-9][a-zA-Z0-9.-]*/")
 
 
-def require(condition, message):
-    if not condition:
-        raise ValueError(message)
+def verify_points(published, calculated, context):
+    published_names = [system["name"] for system in published]
+    require(sorted(published_names) == sorted(system["name"] for system in calculated),
+            f"Published systems differ from measurements in {context}")
+    by_system = {system["name"]: system for system in published}
+    for system in calculated:
+        item = by_system[system["name"]]
+        require(item["version"] == system["version"], f"Wrong version for {system['name']} in {context}")
+        require([point["offered"] for point in item["points"]] == [point["offered"] for point in system["points"]],
+                f"Wrong chart rates for {system['name']} in {context}")
+        for point, expected in zip(item["points"], system["points"], strict=True):
+            require(type(point["offered"]) is int and type(point["p99"]) in (int, float)
+                    and math.isfinite(point["p99"]) and abs(point["p99"] - expected["p99"]) <= 1e-6,
+                    f"Wrong p99 for {system['name']} at {point['offered']} in {context}")
 
 
-def load(path):
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def verify_points(systems, measured, report, workload, reference=None):
-    names = [system["name"] for system in systems]
-    require(len(names) >= 2 and len(names) == len(set(names)) and "Squirix" in names, f"Invalid systems in {report}")
-    cache = workload == "mixed"
-    offered_loads = measured["acceptedChartRates"] if cache else measured["acceptedChartRates"][workload]
-    require(reference is None or reference in offered_loads, f"Missing Squirix reference load in {report}")
-    percentile = "Write" if workload == "write" else "Read"
-    threshold = 999 if cache else 990
-    for system in systems:
-        require(bool(system["version"]), f"Missing system version in {report}")
-        points = system["points"]
-        loads = [point["offered"] for point in points]
-        require(bool(loads) and loads == sorted(set(loads)), f"Unsorted or duplicate rates in {report}")
-        require(loads == offered_loads, f"Chart rates do not match measurements for {system['name']} in {report}")
-        for point in points:
-            load_rate, latency = point["offered"], point["p99"]
-            require(type(load_rate) is int and load_rate > 0, f"Invalid offered load in {report}")
-            require(type(latency) in (int, float) and math.isfinite(latency) and latency >= 0, f"Invalid p99 in {report}")
-            trials = [trial for trial in measured["trials"] if trial["System"] == system["name"]
-                      and trial["Result"]["OfferedOpsPerSecond"] == load_rate and (cache or trial["Workload"] == workload)]
-            require(bool(trials), f"Missing trials for {system['name']} at {load_rate} in {report}")
-            if not cache:
-                require(len(trials) == 3 and {trial["Repetition"] for trial in trials} == {1, 2, 3},
-                        f"Missing or duplicate trials for {system['name']} at {load_rate} in {report}")
-            samples = [trial["Result"] for trial in trials]
-            require(all(sample["Dropped"] == 0 and sample["CompletedWithinWindow"] * 1000 >= sample["Offered"] * threshold
-                        for sample in samples), f"Unsustained chart point for {system['name']} at {load_rate} in {report}")
-            require(abs(median(sample[percentile]["P99Ms"] for sample in samples) - latency) <= 1e-6,
-                    f"p99 does not match trials for {system['name']} at {load_rate} in {report}")
+def verify_run(scenario, run, measured):
+    report = run["report"]
+    accepted, points = summarize(scenario, measured)
+    require(measured["acceptedChartRates"] == accepted, f"Chart rates fail the run policy in {report}")
+    writes = accepted if scenario == "cache" else accepted["write"]
+    reference = run["referenceLoad"]
+    require(type(reference) is int and reference in writes, f"Invalid reference load in {report}")
+    primary = "mixed" if scenario == "cache" else "write"
+    version = next(system["version"] for system in points[primary] if system["name"] == "Squirix")
+    require(run["version"] == f"v{version}", f"Release tag does not match measured Squirix version in {report}")
+    verify_points(run["systems"], points[primary], report)
+    if scenario == "quorum":
+        require(accepted["read"], f"No comparable read points in {report}")
+        verify_points(run["readSystems"], points["read"], report)
 
 
 def main():
@@ -66,12 +58,14 @@ def main():
             require(REPORT.fullmatch(run["report"]), f"Invalid report path for {version}")
             report = ROOT / run["report"]
             require((report / "README.md").is_file(), f"Missing report for {version}")
+            require((report / "benchmark-source.zip").is_file(), f"Missing source archive for {version}")
             measured = load(report / "measurements.json")
-            reference = run["referenceLoad"]
-            require(type(reference) is int and reference > 0, f"Invalid reference load in {report}")
-            verify_points(run["systems"], measured, report, "mixed" if scenario == "cache" else "write", reference)
-            if scenario == "quorum":
-                verify_points(run["readSystems"], measured, report, "read")
+            manifest = load(report / "manifest.json")
+            for key in ("testedRates", "secondsPerPoint", "systems", "environment"):
+                require(manifest[key] == measured[key], f"Run manifest and measurements disagree on {key} in {report}")
+            for key in ("version", "date", "report", "series", "setup"):
+                require(manifest[key] == run[key], f"Run manifest and index disagree on {key} in {report}")
+            verify_run(scenario, run, measured)
             count += 1
     print(f"Validated {count} benchmark runs.")
 

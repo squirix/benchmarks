@@ -1,0 +1,45 @@
+{
+  "version": "v0.1.0-preview.10",
+  "date": "2026-11-22",
+  "series": "Three-node quorum · Docker Desktop loopback · health-checked",
+  "setup": "Shared Docker Desktop VM · 3 nodes, 4 vCPUs each · persistent volumes · client TLS, peer mTLS · 256-byte JSON values",
+  "referenceLoad": 600,
+  "report": "runs/quorum-v0.1.0-preview.10-2026-11-22-verified/",
+  "systems": {
+    "Squirix": "0.1.0-preview.10",
+    "etcd": "3.7.4"
+  },
+  "testedRates": [
+    200,
+    400,
+    600,
+    1200
+  ],
+  "secondsPerPoint": 5,
+  "environment": {
+    "measuredAt": "2026-11-22T15:42:42.2624110+07:00",
+    "cpu": "Intel(R) Core(TM) Ultra 9 285K",
+    "engine": "Docker Desktop 4.99.0 (245822)",
+    "engineVersion": "29.9.3",
+    "kernel": "6.18.58.1-microsoft-standard-WSL2",
+    "guestCpu": 24,
+    "quirks": "Shared Docker Desktop host. Other host services stayed running.",
+    "squirixServerPackageSha256": "9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405",
+    "imageDigests": [
+      "mcr.microsoft.com/dotnet/aspnet@sha256:12b1135f5f8b3c0a214f2a680ff2033dff4f684f445d6c697d9524ceeb303586",
+      "quay.io/coreos/etcd@sha256:641c8cb2492aedf4c693b20029a56f325f9b18754bb7dc9f6eac22c99786228c"
+    ],
+    "dotnetRuntime": "10.0.15",
+    "serverMemoryGiB": 4,
+    "clientMemoryGiB": 3,
+    "clientCpuSet": "16-23",
+    "serverCpuSets": [
+      "0-3",
+      "4-7",
+      "8-11"
+    ],
+    "clientSessions": 48,
+    "keys": 1024,
+    "jsonValueBytes": 256
+  }
+}

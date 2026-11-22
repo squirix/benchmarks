@@ -15,15 +15,19 @@ This benchmark measures end-to-end GET and SET latency at fixed offered request 
 ## Measurement
 
 After preloading, warm up for five seconds. Each rate adds a two-second warmup and a six-second measurement.
+When scheduler p99 exceeds 0.5 ms, repeat the window up to twice with the same request seed and warmup.
+Each trial records earlier windows and uses the first scheduler-qualified window, or the third window if all are late.
 Run three repetitions with a different server order. Client latency starts at the scheduled arrival, so it includes scheduler lag and queueing.
 The generator records GET and SET percentiles, GET latency from dispatch, scheduler lag, drops and completions within the offered window.
 
-The chart shows the median of each repetition's GET p99. Include a load in the comparison only when every repetition for every system completes
-at least 99.9% within the measurement window and the generator drops zero requests. Publish every tested load in the full run report.
+The chart shows the median of each repetition's GET p99. A rate qualifies when every repetition for every system completes at least
+99.9% within the measurement window, drops zero requests and has scheduler p99 at or below 0.5 ms. The run report retains every attempted rate.
+The scheduler limit bounds the effect of late request dispatch on the latency comparison. Server latency and completions stay part of validation
+and do not trigger retries.
 
 ## Run locally
 
-The runner uses PowerShell and Docker with a Linux x86-64 engine. Its default CPU sets require 24 guest vCPUs.
+The runner uses PowerShell 7 and Docker with a Linux x86-64 engine. Its default CPU sets require 24 guest vCPUs.
 Use a different series name if you change CPU placement, the runtime or workloads. The runner pins images by digest and starts containers on demand.
 
 From the repository root, build the generator and fetch the published Squirix server package.
@@ -34,6 +38,8 @@ dotnet build CacheLoad.csproj --configuration Release
 $package = "squirix.server.tool.0.1.0-preview.10.nupkg"
 $url = "https://api.nuget.org/v3-flatcontainer/squirix.server.tool/0.1.0-preview.10/$package"
 Invoke-WebRequest -Uri $url -OutFile $package
+$expected = '9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405'
+if ((Get-FileHash -LiteralPath $package -Algorithm SHA256).Hash -ine $expected) { throw 'Unexpected Squirix package checksum' }
 python -m zipfile -e $package server-package
 dotnet bin/Release/net10.0/CacheLoad.dll certificates certs
 ./run-benchmark.ps1 -Pilot
@@ -41,4 +47,5 @@ dotnet bin/Release/net10.0/CacheLoad.dll certificates certs
 ~~~
 
 The pilot checks TLS and the request path at two loads. The full run writes per-system, per-repetition JSONL under `single-node/measurements/`.
-The script refuses to overwrite an existing measurement file. See the [first run report](../results/runs/single-node-v0.1.0-preview.10-2026-11-22/README.md) for the environment and results.
+The runner keeps completed repetitions when resuming. Incomplete output stays in `.partial` files. Use a clean output directory for a new series.
+See [Add a run](../README.md#add-a-run) for the aggregation and publication commands.

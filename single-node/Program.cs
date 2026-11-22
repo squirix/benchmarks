@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 const int sessionCount = 48;
+const double schedulerBudgetMs = 0.5;
+const int maxWindows = 3;
 var keys = new string[16_384];
 for (var i = 0; i < keys.Length; i++)
     keys[i] = $"key:{i:D12}";
@@ -53,9 +55,19 @@ try
     _ = await LoadMeasurement.MeasureAsync(sessions, rates[0], 5, seed, keys.Length);
     foreach (var rate in rates)
     {
-        _ = await LoadMeasurement.MeasureAsync(sessions, rate, 2, seed, keys.Length);
-        var result = await LoadMeasurement.MeasureAsync(sessions, rate, measurementSeconds, seed, keys.Length);
-        Console.WriteLine(JsonSerializer.Serialize(new { System = system, Repetition = repetition, Result = result }));
+        var earlierWindows = new List<PointResult>(maxWindows - 1);
+        PointResult result;
+        while (true)
+        {
+            _ = await LoadMeasurement.MeasureAsync(sessions, rate, 2, seed, keys.Length);
+            result = await LoadMeasurement.MeasureAsync(sessions, rate, measurementSeconds, seed, keys.Length);
+            if (result.SchedulerLag.P99Ms <= schedulerBudgetMs || earlierWindows.Count == maxWindows - 1)
+                break;
+
+            earlierWindows.Add(result);
+            Console.Error.WriteLine($"{system}: retrying {rate}/s after scheduler p99 {result.SchedulerLag.P99Ms:F3} ms");
+        }
+        Console.WriteLine(JsonSerializer.Serialize(new { System = system, Repetition = repetition, Result = result, EarlierWindows = earlierWindows }));
         Console.Error.WriteLine($"{system}: {rate}/s, p99 GET {result.Read.P99Ms:F3} ms, drops {result.Dropped}");
     }
 }

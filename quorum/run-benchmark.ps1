@@ -98,11 +98,27 @@ function Wait-EtcdLeader($container, [bool] $mustBeA) {
         $leader = $status | Where-Object { $_.Status.leader -ne 0 -and $_.Status.header.member_id -eq $_.Status.leader } |
             Select-Object -First 1
         if ($status.Count -eq 3 -and $nodeA -and $leader -and (!$mustBeA -or $leader.Endpoint -eq $nodeA.Endpoint)) {
-            return @{ Leader = $leader; NodeA = $nodeA }
+            $consistent = @($status | Where-Object {
+                !$_.Status.errors -and $_.Status.leader -eq $leader.Status.leader -and $_.Status.raftTerm -eq $leader.Status.raftTerm
+            })
+            if ($consistent.Count -eq 3) { return @{ Leader = $leader; NodeA = $nodeA; Members = $status } }
         }
         Start-Sleep -Seconds 1
     }
     throw 'etcd cluster did not reach the expected leader state'
+}
+
+function Save-EtcdEvidence($status, $phase, $repetition, $file) {
+    $members = foreach ($member in $status.Members) {
+        @{
+            Endpoint = $member.Endpoint
+            Id = ([UInt64]$member.Status.header.member_id).ToString('x')
+            Leader = ([UInt64]$member.Status.leader).ToString('x')
+            Term = $member.Status.raftTerm
+        }
+    }
+    $row = @{ System = 'etcd'; Repetition = $repetition; Phase = $phase; Nodes = @($members) }
+    [IO.File]::AppendAllText($file, ($row | ConvertTo-Json -Depth 5 -Compress) + "`n", $utf8)
 }
 
 foreach ($repetition in $trialNumbers) {
@@ -110,7 +126,10 @@ foreach ($repetition in $trialNumbers) {
     foreach ($system in $systems) {
         if ($system -notin $Only) { continue }
         $output = Join-Path $outputRoot "$($system.ToLowerInvariant())-$repetition.jsonl"
-        if (Test-Path -LiteralPath $output) { throw "Measurement file already exists: $output" }
+        if (Test-Path -LiteralPath $output) {
+            Write-Host "Keeping completed $system repetition $repetition"
+            continue
+        }
         $partial = "$output.$runId.partial"
         $network = "quorum-bench-$runId-$($system.ToLowerInvariant())-$repetition"
         $started = [Collections.Generic.List[string]]::new()
@@ -136,10 +155,10 @@ foreach ($repetition in $trialNumbers) {
                     Invoke-BenchDocker exec $leaderContainer /usr/local/bin/etcdctl @flags move-leader $member | Out-Null
                     if ($LASTEXITCODE -ne 0) { throw 'Could not move etcd leadership to node A' }
                 }
-                $null = Wait-EtcdLeader $leaderContainer $true
+                $before = Wait-EtcdLeader $leaderContainer $true
+                Save-EtcdEvidence $before 'before' $repetition $partial
                 $endpoint = 'https://localhost:2379'
             } else {
-                Start-Sleep -Seconds 7
                 $endpoint = 'https://localhost:5000'
             }
             Write-Host "Measuring $system repetition $repetition"
@@ -155,8 +174,18 @@ foreach ($repetition in $trialNumbers) {
                 Write-Output $_
             }
             if ($LASTEXITCODE -ne 0) { throw "Load generation failed for $system" }
-            if ($system -eq 'etcd') { $null = Wait-EtcdLeader $leaderContainer $true }
-            Move-Item -LiteralPath $partial -Destination $output
+            if ($system -eq 'etcd') {
+                $after = Wait-EtcdLeader $leaderContainer $true
+                if ($after.Leader.Status.raftTerm -ne $before.Leader.Status.raftTerm) {
+                    throw 'etcd changed Raft term during the trial'
+                }
+                Save-EtcdEvidence $after 'after' $repetition $partial
+            }
+            if (!(Test-Path -LiteralPath $partial) -or
+                @(Get-Content -LiteralPath $partial).Count -ne ($rates.Split(',').Length * 2 + 2)) {
+                throw "Incomplete measurements for $system repetition $repetition"
+            }
+            [IO.File]::Move($partial, $output)
         } catch {
             foreach ($container in $started) { Invoke-BenchDocker logs --tail 15 $container }
             throw

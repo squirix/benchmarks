@@ -1,16 +1,29 @@
 {
   "environment": {
-    "measuredAt": "2026-11-22T15:06:23.7398199+07:00",
+    "measuredAt": "2026-11-22T15:42:42.2624110+07:00",
     "cpu": "Intel(R) Core(TM) Ultra 9 285K",
     "engine": "Docker Desktop 4.99.0 (245822)",
     "engineVersion": "29.9.3",
     "kernel": "6.18.58.1-microsoft-standard-WSL2",
     "guestCpu": 24,
-    "guestMemoryBytes": 50234052608,
-    "aspnetImage": "mcr.microsoft.com/dotnet/aspnet@sha256:12b1135f5f8b3c0a214f2a680ff2033dff4f684f445d6c697d9524ceeb303586",
-    "etcdImage": "quay.io/coreos/etcd@sha256:641c8cb2492aedf4c693b20029a56f325f9b18754bb7dc9f6eac22c99786228c",
+    "quirks": "Shared Docker Desktop host. Other host services stayed running.",
+    "squirixServerPackageSha256": "9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405",
+    "imageDigests": [
+      "mcr.microsoft.com/dotnet/aspnet@sha256:12b1135f5f8b3c0a214f2a680ff2033dff4f684f445d6c697d9524ceeb303586",
+      "quay.io/coreos/etcd@sha256:641c8cb2492aedf4c693b20029a56f325f9b18754bb7dc9f6eac22c99786228c"
+    ],
     "dotnetRuntime": "10.0.15",
-    "squirixServerPackageSha256": "9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405"
+    "serverMemoryGiB": 4,
+    "clientMemoryGiB": 3,
+    "clientCpuSet": "16-23",
+    "serverCpuSets": [
+      "0-3",
+      "4-7",
+      "8-11"
+    ],
+    "clientSessions": 48,
+    "keys": 1024,
+    "jsonValueBytes": 256
   },
   "systems": {
     "Squirix": "0.1.0-preview.10",
@@ -22,23 +35,10 @@
     600,
     1200
   ],
-  "acceptedChartRates": {
-    "write": [
-      200,
-      400,
-      600,
-      1200
-    ],
-    "read": [
-      200,
-      400,
-      600,
-      1200
-    ]
-  },
+  "secondsPerPoint": 5,
   "trials": [
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "write",
       "Result": {
@@ -55,9 +55,9 @@
         },
         "Write": {
           "Count": 1000,
-          "P50Ms": 4.132877,
-          "P95Ms": 6.125635,
-          "P99Ms": 11.142006
+          "P50Ms": 1.290604,
+          "P95Ms": 2.826598,
+          "P99Ms": 17.533474
         },
         "ReadService": {
           "Count": 0,
@@ -67,20 +67,20 @@
         },
         "SchedulerLag": {
           "Count": 1000,
-          "P50Ms": 0.000241,
-          "P95Ms": 0.000452,
-          "P99Ms": 0.000736
+          "P50Ms": 0.00023,
+          "P95Ms": 0.000462,
+          "P99Ms": 0.020015
         },
         "WriteService": {
           "Count": 1000,
-          "P50Ms": 4.096708,
-          "P95Ms": 6.1061,
-          "P99Ms": 11.092251
+          "P50Ms": 1.228399,
+          "P95Ms": 2.78317,
+          "P99Ms": 16.667044
         }
       }
     },
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "write",
       "Result": {
@@ -88,7 +88,7 @@
         "Seconds": 5,
         "Offered": 2000,
         "Dropped": 0,
-        "CompletedWithinWindow": 1999,
+        "CompletedWithinWindow": 2000,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -97,9 +97,9 @@
         },
         "Write": {
           "Count": 2000,
-          "P50Ms": 6.298463,
-          "P95Ms": 8.831881,
-          "P99Ms": 11.662877
+          "P50Ms": 1.153239,
+          "P95Ms": 1.853524,
+          "P99Ms": 12.706053
         },
         "ReadService": {
           "Count": 0,
@@ -109,20 +109,20 @@
         },
         "SchedulerLag": {
           "Count": 2000,
-          "P50Ms": 0.000231,
-          "P95Ms": 0.000455,
-          "P99Ms": 0.004577
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000464,
+          "P99Ms": 0.030442
         },
         "WriteService": {
           "Count": 2000,
-          "P50Ms": 6.264491,
-          "P95Ms": 8.803766,
-          "P99Ms": 11.633698
+          "P50Ms": 1.117279,
+          "P95Ms": 1.801003,
+          "P99Ms": 12.037976
         }
       }
     },
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "write",
       "Result": {
@@ -130,7 +130,7 @@
         "Seconds": 5,
         "Offered": 3000,
         "Dropped": 0,
-        "CompletedWithinWindow": 2997,
+        "CompletedWithinWindow": 3000,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -139,9 +139,9 @@
         },
         "Write": {
           "Count": 3000,
-          "P50Ms": 6.382772,
-          "P95Ms": 10.231158,
-          "P99Ms": 12.897252
+          "P50Ms": 1.067617,
+          "P95Ms": 1.821201,
+          "P99Ms": 7.631762
         },
         "ReadService": {
           "Count": 0,
@@ -151,20 +151,20 @@
         },
         "SchedulerLag": {
           "Count": 3000,
-          "P50Ms": 0.000246,
-          "P95Ms": 0.000463,
-          "P99Ms": 0.011803
+          "P50Ms": 0.00024,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.00047
         },
         "WriteService": {
           "Count": 3000,
-          "P50Ms": 6.346869,
-          "P95Ms": 10.180183,
-          "P99Ms": 12.853352
+          "P50Ms": 1.040472,
+          "P95Ms": 1.788778,
+          "P99Ms": 7.59745
         }
       }
     },
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "write",
       "Result": {
@@ -172,7 +172,7 @@
         "Seconds": 5,
         "Offered": 6000,
         "Dropped": 0,
-        "CompletedWithinWindow": 5992,
+        "CompletedWithinWindow": 5998,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -181,9 +181,9 @@
         },
         "Write": {
           "Count": 6000,
-          "P50Ms": 6.410641,
-          "P95Ms": 9.374755,
-          "P99Ms": 12.75508
+          "P50Ms": 1.143634,
+          "P95Ms": 2.478793,
+          "P99Ms": 4.466686
         },
         "ReadService": {
           "Count": 0,
@@ -193,20 +193,20 @@
         },
         "SchedulerLag": {
           "Count": 6000,
-          "P50Ms": 0.000245,
-          "P95Ms": 0.000467,
-          "P99Ms": 0.039373
+          "P50Ms": 0.000233,
+          "P95Ms": 0.000455,
+          "P99Ms": 0.005698
         },
         "WriteService": {
           "Count": 6000,
-          "P50Ms": 6.380215,
-          "P95Ms": 9.34343,
-          "P99Ms": 12.735346
+          "P50Ms": 1.115018,
+          "P95Ms": 2.449133,
+          "P99Ms": 4.437514
         }
       }
     },
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "read",
       "Result": {
@@ -217,9 +217,9 @@
         "CompletedWithinWindow": 1000,
         "Read": {
           "Count": 1000,
-          "P50Ms": 0.863227,
-          "P95Ms": 1.320982,
-          "P99Ms": 1.651796
+          "P50Ms": 0.559154,
+          "P95Ms": 0.759814,
+          "P99Ms": 0.912417
         },
         "Write": {
           "Count": 0,
@@ -229,15 +229,15 @@
         },
         "ReadService": {
           "Count": 1000,
-          "P50Ms": 0.801658,
-          "P95Ms": 1.245923,
-          "P99Ms": 1.59391
+          "P50Ms": 0.502037,
+          "P95Ms": 0.686301,
+          "P99Ms": 0.835345
         },
         "SchedulerLag": {
           "Count": 1000,
-          "P50Ms": 0.00024,
-          "P95Ms": 0.000461,
-          "P99Ms": 0.002824
+          "P50Ms": 0.000242,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000495
         },
         "WriteService": {
           "Count": 0,
@@ -248,7 +248,7 @@
       }
     },
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "read",
       "Result": {
@@ -259,9 +259,9 @@
         "CompletedWithinWindow": 2000,
         "Read": {
           "Count": 2000,
-          "P50Ms": 0.735956,
-          "P95Ms": 1.088066,
-          "P99Ms": 1.533874
+          "P50Ms": 0.465121,
+          "P95Ms": 0.644888,
+          "P99Ms": 1.01454
         },
         "Write": {
           "Count": 0,
@@ -271,15 +271,15 @@
         },
         "ReadService": {
           "Count": 2000,
-          "P50Ms": 0.694387,
-          "P95Ms": 1.029483,
-          "P99Ms": 1.440978
+          "P50Ms": 0.426982,
+          "P95Ms": 0.595403,
+          "P99Ms": 0.912282
         },
         "SchedulerLag": {
           "Count": 2000,
-          "P50Ms": 0.000236,
-          "P95Ms": 0.000461,
-          "P99Ms": 0.00669
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.008531
         },
         "WriteService": {
           "Count": 0,
@@ -290,7 +290,7 @@
       }
     },
     {
-      "System": "Squirix",
+      "System": "etcd",
       "Repetition": 1,
       "Workload": "read",
       "Result": {
@@ -301,9 +301,9 @@
         "CompletedWithinWindow": 3000,
         "Read": {
           "Count": 3000,
-          "P50Ms": 0.65691,
-          "P95Ms": 0.889924,
-          "P99Ms": 1.223894
+          "P50Ms": 0.437672,
+          "P95Ms": 0.590835,
+          "P99Ms": 0.732578
         },
         "Write": {
           "Count": 0,
@@ -313,15 +313,729 @@
         },
         "ReadService": {
           "Count": 3000,
-          "P50Ms": 0.624253,
-          "P95Ms": 0.847108,
-          "P99Ms": 1.168219
+          "P50Ms": 0.406043,
+          "P95Ms": 0.545757,
+          "P99Ms": 0.674924
         },
         "SchedulerLag": {
           "Count": 3000,
-          "P50Ms": 0.000243,
-          "P95Ms": 0.000466,
-          "P99Ms": 0.031013
+          "P50Ms": 0.000238,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.000793
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 1,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 6000,
+        "Read": {
+          "Count": 6000,
+          "P50Ms": 0.388713,
+          "P95Ms": 0.498356,
+          "P99Ms": 0.662984
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 6000,
+          "P50Ms": 0.366551,
+          "P95Ms": 0.466513,
+          "P99Ms": 0.617513
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.002226
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 200,
+        "Seconds": 5,
+        "Offered": 1000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 1000,
+          "P50Ms": 1.217937,
+          "P95Ms": 2.032493,
+          "P99Ms": 2.858666
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 1000,
+          "P50Ms": 0.00022,
+          "P95Ms": 0.000454,
+          "P99Ms": 0.002911
+        },
+        "WriteService": {
+          "Count": 1000,
+          "P50Ms": 1.162192,
+          "P95Ms": 1.956521,
+          "P99Ms": 2.784282
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 400,
+        "Seconds": 5,
+        "Offered": 2000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 2000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 2000,
+          "P50Ms": 1.09876,
+          "P95Ms": 1.652428,
+          "P99Ms": 2.766476
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 2000,
+          "P50Ms": 0.000234,
+          "P95Ms": 0.000449,
+          "P99Ms": 0.000469
+        },
+        "WriteService": {
+          "Count": 2000,
+          "P50Ms": 1.0672,
+          "P95Ms": 1.613131,
+          "P99Ms": 2.740854
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 600,
+        "Seconds": 5,
+        "Offered": 3000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 3000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 3000,
+          "P50Ms": 1.062779,
+          "P95Ms": 1.524301,
+          "P99Ms": 3.050139
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 3000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.000454,
+          "P99Ms": 0.001911
+        },
+        "WriteService": {
+          "Count": 3000,
+          "P50Ms": 1.035999,
+          "P95Ms": 1.495693,
+          "P99Ms": 3.027721
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 5999,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 1.148805,
+          "P95Ms": 2.730451,
+          "P99Ms": 7.293849
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000461,
+          "P99Ms": 0.012191
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 1.120579,
+          "P95Ms": 2.687303,
+          "P99Ms": 7.260842
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 200,
+        "Seconds": 5,
+        "Offered": 1000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1000,
+        "Read": {
+          "Count": 1000,
+          "P50Ms": 0.556429,
+          "P95Ms": 0.751554,
+          "P99Ms": 0.948207
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 1000,
+          "P50Ms": 0.497725,
+          "P95Ms": 0.670167,
+          "P99Ms": 0.829448
+        },
+        "SchedulerLag": {
+          "Count": 1000,
+          "P50Ms": 0.000232,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.000648
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 400,
+        "Seconds": 5,
+        "Offered": 2000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 2000,
+        "Read": {
+          "Count": 2000,
+          "P50Ms": 0.474987,
+          "P95Ms": 0.639666,
+          "P99Ms": 1.07025
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 2000,
+          "P50Ms": 0.435005,
+          "P95Ms": 0.589932,
+          "P99Ms": 1.036065
+        },
+        "SchedulerLag": {
+          "Count": 2000,
+          "P50Ms": 0.000253,
+          "P95Ms": 0.000456,
+          "P99Ms": 0.002249
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 600,
+        "Seconds": 5,
+        "Offered": 3000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 3000,
+        "Read": {
+          "Count": 3000,
+          "P50Ms": 0.432348,
+          "P95Ms": 0.566987,
+          "P99Ms": 0.736352
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 3000,
+          "P50Ms": 0.400219,
+          "P95Ms": 0.519951,
+          "P99Ms": 0.661297
+        },
+        "SchedulerLag": {
+          "Count": 3000,
+          "P50Ms": 0.000248,
+          "P95Ms": 0.000454,
+          "P99Ms": 0.000504
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 2,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 6000,
+        "Read": {
+          "Count": 6000,
+          "P50Ms": 0.39574,
+          "P95Ms": 0.519195,
+          "P99Ms": 0.699773
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 6000,
+          "P50Ms": 0.373119,
+          "P95Ms": 0.485418,
+          "P99Ms": 0.659735
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000458,
+          "P99Ms": 0.002983
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 200,
+        "Seconds": 5,
+        "Offered": 1000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 1000,
+          "P50Ms": 1.208226,
+          "P95Ms": 2.242027,
+          "P99Ms": 6.233433
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 1000,
+          "P50Ms": 0.000227,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.000756
+        },
+        "WriteService": {
+          "Count": 1000,
+          "P50Ms": 1.153101,
+          "P95Ms": 2.189805,
+          "P99Ms": 6.201405
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 400,
+        "Seconds": 5,
+        "Offered": 2000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 2000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 2000,
+          "P50Ms": 1.077518,
+          "P95Ms": 1.949787,
+          "P99Ms": 2.459834
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 2000,
+          "P50Ms": 0.000235,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000572
+        },
+        "WriteService": {
+          "Count": 2000,
+          "P50Ms": 1.047148,
+          "P95Ms": 1.920623,
+          "P99Ms": 2.41517
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 600,
+        "Seconds": 5,
+        "Offered": 3000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 3000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 3000,
+          "P50Ms": 1.091353,
+          "P95Ms": 27.232839,
+          "P99Ms": 39.695625
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 3000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.002114
+        },
+        "WriteService": {
+          "Count": 3000,
+          "P50Ms": 1.063956,
+          "P95Ms": 27.197866,
+          "P99Ms": 39.659526
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 5999,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 1.086236,
+          "P95Ms": 2.072549,
+          "P99Ms": 3.574944
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000462,
+          "P99Ms": 0.016062
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 1.05768,
+          "P95Ms": 2.037989,
+          "P99Ms": 3.550935
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 200,
+        "Seconds": 5,
+        "Offered": 1000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1000,
+        "Read": {
+          "Count": 1000,
+          "P50Ms": 0.548968,
+          "P95Ms": 0.742591,
+          "P99Ms": 0.916793
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 1000,
+          "P50Ms": 0.495077,
+          "P95Ms": 0.677279,
+          "P99Ms": 0.846676
+        },
+        "SchedulerLag": {
+          "Count": 1000,
+          "P50Ms": 0.000246,
+          "P95Ms": 0.000462,
+          "P99Ms": 0.047487
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 400,
+        "Seconds": 5,
+        "Offered": 2000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 2000,
+        "Read": {
+          "Count": 2000,
+          "P50Ms": 0.466655,
+          "P95Ms": 0.6241,
+          "P99Ms": 0.752016
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 2000,
+          "P50Ms": 0.425387,
+          "P95Ms": 0.568051,
+          "P99Ms": 0.697172
+        },
+        "SchedulerLag": {
+          "Count": 2000,
+          "P50Ms": 0.000236,
+          "P95Ms": 0.000454,
+          "P99Ms": 0.000502
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 600,
+        "Seconds": 5,
+        "Offered": 3000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 3000,
+        "Read": {
+          "Count": 3000,
+          "P50Ms": 0.434977,
+          "P95Ms": 0.57535,
+          "P99Ms": 0.731153
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 3000,
+          "P50Ms": 0.403609,
+          "P95Ms": 0.534766,
+          "P99Ms": 0.672214
+        },
+        "SchedulerLag": {
+          "Count": 3000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.00047
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "etcd",
+      "Repetition": 3,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 6000,
+        "Read": {
+          "Count": 6000,
+          "P50Ms": 0.39008,
+          "P95Ms": 0.503204,
+          "P99Ms": 0.735212
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 6000,
+          "P50Ms": 0.367835,
+          "P95Ms": 0.470891,
+          "P99Ms": 0.677399
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.000489
         },
         "WriteService": {
           "Count": 0,
@@ -334,55 +1048,13 @@
     {
       "System": "Squirix",
       "Repetition": 1,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 5999,
-        "Read": {
-          "Count": 6000,
-          "P50Ms": 0.581577,
-          "P95Ms": 0.792561,
-          "P99Ms": 1.292582
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 6000,
-          "P50Ms": 0.5557,
-          "P95Ms": 0.749657,
-          "P99Ms": 1.082906
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000253,
-          "P95Ms": 0.000766,
-          "P99Ms": 0.143532
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "Squirix",
-      "Repetition": 2,
       "Workload": "write",
       "Result": {
         "OfferedOpsPerSecond": 200,
         "Seconds": 5,
         "Offered": 1000,
         "Dropped": 0,
-        "CompletedWithinWindow": 999,
+        "CompletedWithinWindow": 1000,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -391,9 +1063,9 @@
         },
         "Write": {
           "Count": 1000,
-          "P50Ms": 4.127379,
-          "P95Ms": 5.634916,
-          "P99Ms": 8.495939
+          "P50Ms": 3.993668,
+          "P95Ms": 6.227631,
+          "P99Ms": 10.65024
         },
         "ReadService": {
           "Count": 0,
@@ -403,28 +1075,28 @@
         },
         "SchedulerLag": {
           "Count": 1000,
-          "P50Ms": 0.000245,
-          "P95Ms": 0.00046,
-          "P99Ms": 0.002343
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000456,
+          "P99Ms": 0.002117
         },
         "WriteService": {
           "Count": 1000,
-          "P50Ms": 4.088878,
-          "P95Ms": 5.599577,
-          "P99Ms": 8.450749
+          "P50Ms": 3.959561,
+          "P95Ms": 6.154548,
+          "P99Ms": 10.570839
         }
       }
     },
     {
       "System": "Squirix",
-      "Repetition": 2,
+      "Repetition": 1,
       "Workload": "write",
       "Result": {
         "OfferedOpsPerSecond": 400,
         "Seconds": 5,
         "Offered": 2000,
         "Dropped": 0,
-        "CompletedWithinWindow": 1997,
+        "CompletedWithinWindow": 1998,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -433,9 +1105,9 @@
         },
         "Write": {
           "Count": 2000,
-          "P50Ms": 6.08201,
-          "P95Ms": 9.017909,
-          "P99Ms": 13.89246
+          "P50Ms": 5.795486,
+          "P95Ms": 8.28962,
+          "P99Ms": 10.592294
         },
         "ReadService": {
           "Count": 0,
@@ -445,28 +1117,28 @@
         },
         "SchedulerLag": {
           "Count": 2000,
-          "P50Ms": 0.000241,
-          "P95Ms": 0.00046,
-          "P99Ms": 0.051919
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.001656
         },
         "WriteService": {
           "Count": 2000,
-          "P50Ms": 6.051418,
-          "P95Ms": 8.985062,
-          "P99Ms": 13.867919
+          "P50Ms": 5.766317,
+          "P95Ms": 8.248525,
+          "P99Ms": 10.550498
         }
       }
     },
     {
       "System": "Squirix",
-      "Repetition": 2,
+      "Repetition": 1,
       "Workload": "write",
       "Result": {
         "OfferedOpsPerSecond": 600,
         "Seconds": 5,
         "Offered": 3000,
         "Dropped": 0,
-        "CompletedWithinWindow": 2994,
+        "CompletedWithinWindow": 2998,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -475,9 +1147,9 @@
         },
         "Write": {
           "Count": 3000,
-          "P50Ms": 6.163624,
-          "P95Ms": 8.958281,
-          "P99Ms": 11.947573
+          "P50Ms": 5.610312,
+          "P95Ms": 7.724788,
+          "P99Ms": 10.47972
         },
         "ReadService": {
           "Count": 0,
@@ -487,21 +1159,21 @@
         },
         "SchedulerLag": {
           "Count": 3000,
-          "P50Ms": 0.000243,
-          "P95Ms": 0.00046,
-          "P99Ms": 0.017728
+          "P50Ms": 0.000248,
+          "P95Ms": 0.000458,
+          "P99Ms": 0.042767
         },
         "WriteService": {
           "Count": 3000,
-          "P50Ms": 6.128338,
-          "P95Ms": 8.908634,
-          "P99Ms": 11.892463
+          "P50Ms": 5.582874,
+          "P95Ms": 7.683196,
+          "P99Ms": 10.440619
         }
       }
     },
     {
       "System": "Squirix",
-      "Repetition": 2,
+      "Repetition": 1,
       "Workload": "write",
       "Result": {
         "OfferedOpsPerSecond": 1200,
@@ -517,9 +1189,9 @@
         },
         "Write": {
           "Count": 6000,
-          "P50Ms": 6.804375,
-          "P95Ms": 10.628902,
-          "P99Ms": 13.3306
+          "P50Ms": 5.634244,
+          "P95Ms": 8.155524,
+          "P99Ms": 10.07631
         },
         "ReadService": {
           "Count": 0,
@@ -529,15 +1201,351 @@
         },
         "SchedulerLag": {
           "Count": 6000,
-          "P50Ms": 0.000254,
-          "P95Ms": 0.003413,
-          "P99Ms": 0.065164
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.008307
         },
         "WriteService": {
           "Count": 6000,
-          "P50Ms": 6.765848,
-          "P95Ms": 10.523806,
-          "P99Ms": 13.146521
+          "P50Ms": 5.605479,
+          "P95Ms": 8.128787,
+          "P99Ms": 10.049085
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 200,
+        "Seconds": 5,
+        "Offered": 1000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1000,
+        "Read": {
+          "Count": 1000,
+          "P50Ms": 0.742643,
+          "P95Ms": 1.005936,
+          "P99Ms": 1.396045
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 1000,
+          "P50Ms": 0.683402,
+          "P95Ms": 0.912516,
+          "P99Ms": 1.214734
+        },
+        "SchedulerLag": {
+          "Count": 1000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.000768
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 400,
+        "Seconds": 5,
+        "Offered": 2000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 2000,
+        "Read": {
+          "Count": 2000,
+          "P50Ms": 0.64415,
+          "P95Ms": 0.81494,
+          "P99Ms": 0.973743
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 2000,
+          "P50Ms": 0.600996,
+          "P95Ms": 0.758737,
+          "P99Ms": 0.924187
+        },
+        "SchedulerLag": {
+          "Count": 2000,
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000461,
+          "P99Ms": 0.003377
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 600,
+        "Seconds": 5,
+        "Offered": 3000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 3000,
+        "Read": {
+          "Count": 3000,
+          "P50Ms": 0.599312,
+          "P95Ms": 0.749616,
+          "P99Ms": 0.930401
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 3000,
+          "P50Ms": 0.569657,
+          "P95Ms": 0.711666,
+          "P99Ms": 0.895036
+        },
+        "SchedulerLag": {
+          "Count": 3000,
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000456,
+          "P99Ms": 0.000745
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 6000,
+        "Read": {
+          "Count": 6000,
+          "P50Ms": 0.549101,
+          "P95Ms": 0.718406,
+          "P99Ms": 1.091478
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 6000,
+          "P50Ms": 0.526393,
+          "P95Ms": 0.682991,
+          "P99Ms": 0.989473
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000464,
+          "P99Ms": 0.047502
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 200,
+        "Seconds": 5,
+        "Offered": 1000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1000,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 1000,
+          "P50Ms": 3.922306,
+          "P95Ms": 4.944211,
+          "P99Ms": 8.203394
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 1000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.000801
+        },
+        "WriteService": {
+          "Count": 1000,
+          "P50Ms": 3.891654,
+          "P95Ms": 4.898971,
+          "P99Ms": 7.42537
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 400,
+        "Seconds": 5,
+        "Offered": 2000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 1998,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 2000,
+          "P50Ms": 5.83452,
+          "P95Ms": 8.688439,
+          "P99Ms": 13.093806
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 2000,
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.00748
+        },
+        "WriteService": {
+          "Count": 2000,
+          "P50Ms": 5.795665,
+          "P95Ms": 8.647524,
+          "P99Ms": 13.065105
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 600,
+        "Seconds": 5,
+        "Offered": 3000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 2997,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 3000,
+          "P50Ms": 5.503227,
+          "P95Ms": 7.756707,
+          "P99Ms": 12.7462
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 3000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000455,
+          "P99Ms": 0.006118
+        },
+        "WriteService": {
+          "Count": 3000,
+          "P50Ms": 5.471978,
+          "P95Ms": 7.719952,
+          "P99Ms": 12.625309
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Workload": "write",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 5988,
+        "Read": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 6.005445,
+          "P95Ms": 9.663565,
+          "P99Ms": 15.64477
+        },
+        "ReadService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "SchedulerLag": {
+          "Count": 6000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.007419
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 5.970321,
+          "P95Ms": 9.588327,
+          "P99Ms": 15.621446
         }
       }
     },
@@ -553,9 +1561,9 @@
         "CompletedWithinWindow": 1000,
         "Read": {
           "Count": 1000,
-          "P50Ms": 0.991724,
-          "P95Ms": 1.726031,
-          "P99Ms": 2.125115
+          "P50Ms": 0.744666,
+          "P95Ms": 0.948017,
+          "P99Ms": 1.125511
         },
         "Write": {
           "Count": 0,
@@ -565,15 +1573,15 @@
         },
         "ReadService": {
           "Count": 1000,
-          "P50Ms": 0.922559,
-          "P95Ms": 1.61634,
-          "P99Ms": 2.008475
+          "P50Ms": 0.679666,
+          "P95Ms": 0.858138,
+          "P99Ms": 1.020975
         },
         "SchedulerLag": {
           "Count": 1000,
-          "P50Ms": 0.000298,
-          "P95Ms": 0.036488,
-          "P99Ms": 0.10512
+          "P50Ms": 0.000255,
+          "P95Ms": 0.006701,
+          "P99Ms": 0.119316
         },
         "WriteService": {
           "Count": 0,
@@ -595,9 +1603,9 @@
         "CompletedWithinWindow": 2000,
         "Read": {
           "Count": 2000,
-          "P50Ms": 0.721006,
-          "P95Ms": 1.237782,
-          "P99Ms": 1.713299
+          "P50Ms": 0.644403,
+          "P95Ms": 0.840779,
+          "P99Ms": 1.043576
         },
         "Write": {
           "Count": 0,
@@ -607,15 +1615,15 @@
         },
         "ReadService": {
           "Count": 2000,
-          "P50Ms": 0.672157,
-          "P95Ms": 1.170789,
-          "P99Ms": 1.634942
+          "P50Ms": 0.603964,
+          "P95Ms": 0.787592,
+          "P99Ms": 0.986549
         },
         "SchedulerLag": {
           "Count": 2000,
-          "P50Ms": 0.000261,
-          "P95Ms": 0.036189,
-          "P99Ms": 0.18013
+          "P50Ms": 0.000237,
+          "P95Ms": 0.000463,
+          "P99Ms": 0.008572
         },
         "WriteService": {
           "Count": 0,
@@ -637,9 +1645,9 @@
         "CompletedWithinWindow": 3000,
         "Read": {
           "Count": 3000,
-          "P50Ms": 0.621862,
-          "P95Ms": 0.779939,
-          "P99Ms": 1.068836
+          "P50Ms": 0.593222,
+          "P95Ms": 0.73296,
+          "P99Ms": 0.964035
         },
         "Write": {
           "Count": 0,
@@ -649,15 +1657,15 @@
         },
         "ReadService": {
           "Count": 3000,
-          "P50Ms": 0.592206,
-          "P95Ms": 0.741369,
-          "P99Ms": 0.986286
+          "P50Ms": 0.562798,
+          "P95Ms": 0.688933,
+          "P99Ms": 0.918873
         },
         "SchedulerLag": {
           "Count": 3000,
-          "P50Ms": 0.000238,
-          "P95Ms": 0.000466,
-          "P99Ms": 0.023435
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000464,
+          "P99Ms": 0.012534
         },
         "WriteService": {
           "Count": 0,
@@ -679,9 +1687,9 @@
         "CompletedWithinWindow": 6000,
         "Read": {
           "Count": 6000,
-          "P50Ms": 0.602929,
-          "P95Ms": 0.776075,
-          "P99Ms": 1.454151
+          "P50Ms": 0.550505,
+          "P95Ms": 0.694885,
+          "P99Ms": 0.897789
         },
         "Write": {
           "Count": 0,
@@ -691,15 +1699,15 @@
         },
         "ReadService": {
           "Count": 6000,
-          "P50Ms": 0.576446,
-          "P95Ms": 0.734082,
-          "P99Ms": 1.271892
+          "P50Ms": 0.527607,
+          "P95Ms": 0.652747,
+          "P99Ms": 0.83369
         },
         "SchedulerLag": {
           "Count": 6000,
-          "P50Ms": 0.000248,
-          "P95Ms": 0.000531,
-          "P99Ms": 0.114683
+          "P50Ms": 0.000241,
+          "P95Ms": 0.000462,
+          "P99Ms": 0.091563
         },
         "WriteService": {
           "Count": 0,
@@ -727,9 +1735,9 @@
         },
         "Write": {
           "Count": 1000,
-          "P50Ms": 4.03039,
-          "P95Ms": 5.740872,
-          "P99Ms": 9.434037
+          "P50Ms": 3.848295,
+          "P95Ms": 5.384974,
+          "P99Ms": 9.159894
         },
         "ReadService": {
           "Count": 0,
@@ -739,15 +1747,15 @@
         },
         "SchedulerLag": {
           "Count": 1000,
-          "P50Ms": 0.000238,
-          "P95Ms": 0.000453,
-          "P99Ms": 0.00213
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000456,
+          "P99Ms": 0.047252
         },
         "WriteService": {
           "Count": 1000,
-          "P50Ms": 4.000921,
-          "P95Ms": 5.683956,
-          "P99Ms": 9.401014
+          "P50Ms": 3.819094,
+          "P95Ms": 5.232424,
+          "P99Ms": 8.941022
         }
       }
     },
@@ -769,9 +1777,9 @@
         },
         "Write": {
           "Count": 2000,
-          "P50Ms": 6.622301,
-          "P95Ms": 9.947753,
-          "P99Ms": 15.013248
+          "P50Ms": 5.543421,
+          "P95Ms": 7.654156,
+          "P99Ms": 9.456813
         },
         "ReadService": {
           "Count": 0,
@@ -781,15 +1789,15 @@
         },
         "SchedulerLag": {
           "Count": 2000,
-          "P50Ms": 0.000271,
-          "P95Ms": 0.027766,
-          "P99Ms": 0.057211
+          "P50Ms": 0.000249,
+          "P95Ms": 0.00046,
+          "P99Ms": 0.008373
         },
         "WriteService": {
           "Count": 2000,
-          "P50Ms": 6.578518,
-          "P95Ms": 9.902534,
-          "P99Ms": 14.982288
+          "P50Ms": 5.510498,
+          "P95Ms": 7.605793,
+          "P99Ms": 9.434542
         }
       }
     },
@@ -802,7 +1810,7 @@
         "Seconds": 5,
         "Offered": 3000,
         "Dropped": 0,
-        "CompletedWithinWindow": 2998,
+        "CompletedWithinWindow": 2997,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -811,9 +1819,9 @@
         },
         "Write": {
           "Count": 3000,
-          "P50Ms": 6.475967,
-          "P95Ms": 9.58337,
-          "P99Ms": 12.89781
+          "P50Ms": 5.701369,
+          "P95Ms": 7.896052,
+          "P99Ms": 9.983049
         },
         "ReadService": {
           "Count": 0,
@@ -823,15 +1831,15 @@
         },
         "SchedulerLag": {
           "Count": 3000,
-          "P50Ms": 0.000247,
-          "P95Ms": 0.001073,
-          "P99Ms": 0.031262
+          "P50Ms": 0.000241,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.004287
         },
         "WriteService": {
           "Count": 3000,
-          "P50Ms": 6.440005,
-          "P95Ms": 9.54876,
-          "P99Ms": 12.870742
+          "P50Ms": 5.673027,
+          "P95Ms": 7.865591,
+          "P99Ms": 9.955762
         }
       }
     },
@@ -844,7 +1852,7 @@
         "Seconds": 5,
         "Offered": 6000,
         "Dropped": 0,
-        "CompletedWithinWindow": 5974,
+        "CompletedWithinWindow": 5996,
         "Read": {
           "Count": 0,
           "P50Ms": 0,
@@ -853,9 +1861,9 @@
         },
         "Write": {
           "Count": 6000,
-          "P50Ms": 7.655473,
-          "P95Ms": 11.49378,
-          "P99Ms": 16.713189
+          "P50Ms": 5.620472,
+          "P95Ms": 8.220059,
+          "P99Ms": 11.232809
         },
         "ReadService": {
           "Count": 0,
@@ -865,15 +1873,15 @@
         },
         "SchedulerLag": {
           "Count": 6000,
-          "P50Ms": 0.000249,
-          "P95Ms": 0.00076,
-          "P99Ms": 0.037165
+          "P50Ms": 0.000242,
+          "P95Ms": 0.000459,
+          "P99Ms": 0.011764
         },
         "WriteService": {
           "Count": 6000,
-          "P50Ms": 7.616672,
-          "P95Ms": 11.436646,
-          "P99Ms": 16.674509
+          "P50Ms": 5.590127,
+          "P95Ms": 8.162552,
+          "P99Ms": 11.205034
         }
       }
     },
@@ -889,9 +1897,9 @@
         "CompletedWithinWindow": 1000,
         "Read": {
           "Count": 1000,
-          "P50Ms": 0.936928,
-          "P95Ms": 1.303135,
-          "P99Ms": 1.719264
+          "P50Ms": 0.743191,
+          "P95Ms": 0.956416,
+          "P99Ms": 1.254652
         },
         "Write": {
           "Count": 0,
@@ -901,15 +1909,15 @@
         },
         "ReadService": {
           "Count": 1000,
-          "P50Ms": 0.869644,
-          "P95Ms": 1.22513,
-          "P99Ms": 1.60315
+          "P50Ms": 0.683654,
+          "P95Ms": 0.869999,
+          "P99Ms": 1.039795
         },
         "SchedulerLag": {
           "Count": 1000,
           "P50Ms": 0.00024,
-          "P95Ms": 0.000459,
-          "P99Ms": 0.004985
+          "P95Ms": 0.00046,
+          "P99Ms": 0.003378
         },
         "WriteService": {
           "Count": 0,
@@ -931,9 +1939,9 @@
         "CompletedWithinWindow": 2000,
         "Read": {
           "Count": 2000,
-          "P50Ms": 0.674642,
-          "P95Ms": 0.867141,
-          "P99Ms": 1.094894
+          "P50Ms": 0.644793,
+          "P95Ms": 0.828088,
+          "P99Ms": 1.06991
         },
         "Write": {
           "Count": 0,
@@ -943,1107 +1951,99 @@
         },
         "ReadService": {
           "Count": 2000,
-          "P50Ms": 0.631318,
-          "P95Ms": 0.805467,
-          "P99Ms": 1.020803
-        },
-        "SchedulerLag": {
-          "Count": 2000,
-          "P50Ms": 0.000249,
-          "P95Ms": 0.002201,
-          "P99Ms": 0.127299
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "Squirix",
-      "Repetition": 3,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 3000,
-        "Read": {
-          "Count": 3000,
-          "P50Ms": 0.607055,
-          "P95Ms": 0.748569,
-          "P99Ms": 0.939077
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 3000,
-          "P50Ms": 0.576455,
-          "P95Ms": 0.713509,
-          "P99Ms": 0.87217
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000237,
-          "P95Ms": 0.000454,
-          "P99Ms": 0.000606
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "Squirix",
-      "Repetition": 3,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 6000,
-        "Read": {
-          "Count": 6000,
-          "P50Ms": 0.603749,
-          "P95Ms": 0.817643,
-          "P99Ms": 1.249419
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 6000,
-          "P50Ms": 0.577614,
-          "P95Ms": 0.778509,
-          "P99Ms": 1.078847
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000251,
-          "P95Ms": 0.001613,
-          "P99Ms": 0.058068
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 200,
-        "Seconds": 5,
-        "Offered": 1000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1000,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 1000,
-          "P50Ms": 1.353866,
-          "P95Ms": 2.101576,
-          "P99Ms": 3.04489
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 1000,
-          "P50Ms": 0.000237,
-          "P95Ms": 0.000464,
-          "P99Ms": 0.02282
-        },
-        "WriteService": {
-          "Count": 1000,
-          "P50Ms": 1.299738,
-          "P95Ms": 2.024398,
-          "P99Ms": 2.81508
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 400,
-        "Seconds": 5,
-        "Offered": 2000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1997,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 2000,
-          "P50Ms": 1.163001,
-          "P95Ms": 1.751391,
-          "P99Ms": 2.497763
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 2000,
-          "P50Ms": 0.000233,
-          "P95Ms": 0.000447,
-          "P99Ms": 0.000497
-        },
-        "WriteService": {
-          "Count": 2000,
-          "P50Ms": 1.129638,
-          "P95Ms": 1.706091,
-          "P99Ms": 2.463537
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 3000,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 3000,
-          "P50Ms": 1.122738,
-          "P95Ms": 1.788812,
-          "P99Ms": 5.308167
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000254,
-          "P95Ms": 0.000466,
-          "P99Ms": 0.025552
-        },
-        "WriteService": {
-          "Count": 3000,
-          "P50Ms": 1.091732,
-          "P95Ms": 1.752967,
-          "P99Ms": 5.269886
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 5998,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 6000,
-          "P50Ms": 1.544528,
-          "P95Ms": 2.704788,
-          "P99Ms": 5.047761
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000243,
-          "P95Ms": 0.000457,
-          "P99Ms": 0.003293
-        },
-        "WriteService": {
-          "Count": 6000,
-          "P50Ms": 1.513439,
-          "P95Ms": 2.666969,
-          "P99Ms": 4.154255
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 200,
-        "Seconds": 5,
-        "Offered": 1000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1000,
-        "Read": {
-          "Count": 1000,
-          "P50Ms": 0.627954,
-          "P95Ms": 1.013487,
-          "P99Ms": 1.264582
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 1000,
-          "P50Ms": 0.571387,
-          "P95Ms": 0.937842,
-          "P99Ms": 1.169916
-        },
-        "SchedulerLag": {
-          "Count": 1000,
-          "P50Ms": 0.000245,
-          "P95Ms": 0.000446,
-          "P99Ms": 0.003743
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 400,
-        "Seconds": 5,
-        "Offered": 2000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 2000,
-        "Read": {
-          "Count": 2000,
-          "P50Ms": 0.556415,
-          "P95Ms": 0.960764,
-          "P99Ms": 1.367029
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 2000,
-          "P50Ms": 0.513763,
-          "P95Ms": 0.896062,
-          "P99Ms": 1.244011
+          "P50Ms": 0.599066,
+          "P95Ms": 0.7771,
+          "P99Ms": 1.017663
         },
         "SchedulerLag": {
           "Count": 2000,
           "P50Ms": 0.000243,
-          "P95Ms": 0.000462,
-          "P99Ms": 0.004975
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 3000,
-        "Read": {
-          "Count": 3000,
-          "P50Ms": 0.454246,
-          "P95Ms": 0.603264,
-          "P99Ms": 0.75438
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 3000,
-          "P50Ms": 0.420813,
-          "P95Ms": 0.561933,
-          "P99Ms": 0.724575
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000234,
-          "P95Ms": 0.000454,
-          "P99Ms": 0.005087
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 1,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 6000,
-        "Read": {
-          "Count": 6000,
-          "P50Ms": 0.426454,
-          "P95Ms": 0.602319,
-          "P99Ms": 0.76138
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 6000,
-          "P50Ms": 0.402377,
-          "P95Ms": 0.561522,
-          "P99Ms": 0.712672
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000242,
-          "P95Ms": 0.000461,
-          "P99Ms": 0.008735
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 200,
-        "Seconds": 5,
-        "Offered": 1000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1000,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 1000,
-          "P50Ms": 1.425732,
-          "P95Ms": 2.296697,
-          "P99Ms": 3.078847
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 1000,
-          "P50Ms": 0.000242,
           "P95Ms": 0.000463,
-          "P99Ms": 0.001913
+          "P99Ms": 0.003638
         },
         "WriteService": {
-          "Count": 1000,
-          "P50Ms": 1.362877,
-          "P95Ms": 2.18289,
-          "P99Ms": 2.95532
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
         }
       }
     },
     {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "write",
+      "System": "Squirix",
+      "Repetition": 3,
+      "Workload": "read",
       "Result": {
-        "OfferedOpsPerSecond": 400,
+        "OfferedOpsPerSecond": 600,
         "Seconds": 5,
-        "Offered": 2000,
+        "Offered": 3000,
         "Dropped": 0,
-        "CompletedWithinWindow": 2000,
+        "CompletedWithinWindow": 3000,
         "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
+          "Count": 3000,
+          "P50Ms": 0.590197,
+          "P95Ms": 0.767378,
+          "P99Ms": 1.009551
         },
         "Write": {
-          "Count": 2000,
-          "P50Ms": 1.301613,
-          "P95Ms": 22.991211,
-          "P99Ms": 31.985581
-        },
-        "ReadService": {
           "Count": 0,
           "P50Ms": 0,
           "P95Ms": 0,
           "P99Ms": 0
         },
+        "ReadService": {
+          "Count": 3000,
+          "P50Ms": 0.558901,
+          "P95Ms": 0.715657,
+          "P99Ms": 0.904139
+        },
         "SchedulerLag": {
-          "Count": 2000,
+          "Count": 3000,
+          "P50Ms": 0.000257,
+          "P95Ms": 0.000792,
+          "P99Ms": 0.142898
+        },
+        "WriteService": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        }
+      }
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Workload": "read",
+      "Result": {
+        "OfferedOpsPerSecond": 1200,
+        "Seconds": 5,
+        "Offered": 6000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 6000,
+        "Read": {
+          "Count": 6000,
+          "P50Ms": 0.536563,
+          "P95Ms": 0.67987,
+          "P99Ms": 0.96946
+        },
+        "Write": {
+          "Count": 0,
+          "P50Ms": 0,
+          "P95Ms": 0,
+          "P99Ms": 0
+        },
+        "ReadService": {
+          "Count": 6000,
+          "P50Ms": 0.514617,
+          "P95Ms": 0.641896,
+          "P99Ms": 0.902207
+        },
+        "SchedulerLag": {
+          "Count": 6000,
           "P50Ms": 0.000247,
-          "P95Ms": 0.000455,
-          "P99Ms": 0.005381
-        },
-        "WriteService": {
-          "Count": 2000,
-          "P50Ms": 1.262841,
-          "P95Ms": 22.947714,
-          "P99Ms": 31.955836
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 2999,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 3000,
-          "P50Ms": 1.162324,
-          "P95Ms": 1.764967,
-          "P99Ms": 3.187964
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000235,
-          "P95Ms": 0.000465,
-          "P99Ms": 0.012229
-        },
-        "WriteService": {
-          "Count": 3000,
-          "P50Ms": 1.130336,
-          "P95Ms": 1.727974,
-          "P99Ms": 3.152311
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 5999,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 6000,
-          "P50Ms": 1.412041,
-          "P95Ms": 3.38216,
-          "P99Ms": 12.119297
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000252,
-          "P95Ms": 0.000471,
-          "P99Ms": 0.021371
-        },
-        "WriteService": {
-          "Count": 6000,
-          "P50Ms": 1.380124,
-          "P95Ms": 3.342392,
-          "P99Ms": 11.077141
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 200,
-        "Seconds": 5,
-        "Offered": 1000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1000,
-        "Read": {
-          "Count": 1000,
-          "P50Ms": 0.599821,
-          "P95Ms": 0.816256,
-          "P99Ms": 1.137527
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 1000,
-          "P50Ms": 0.539287,
-          "P95Ms": 0.738668,
-          "P99Ms": 1.036611
-        },
-        "SchedulerLag": {
-          "Count": 1000,
-          "P50Ms": 0.000237,
-          "P95Ms": 0.000453,
-          "P99Ms": 0.000515
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 400,
-        "Seconds": 5,
-        "Offered": 2000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 2000,
-        "Read": {
-          "Count": 2000,
-          "P50Ms": 0.493653,
-          "P95Ms": 0.653137,
-          "P99Ms": 0.86773
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 2000,
-          "P50Ms": 0.455104,
-          "P95Ms": 0.606612,
-          "P99Ms": 0.801758
-        },
-        "SchedulerLag": {
-          "Count": 2000,
-          "P50Ms": 0.000241,
-          "P95Ms": 0.000455,
-          "P99Ms": 0.002092
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 3000,
-        "Read": {
-          "Count": 3000,
-          "P50Ms": 0.461659,
-          "P95Ms": 0.605764,
-          "P99Ms": 0.764907
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 3000,
-          "P50Ms": 0.428478,
-          "P95Ms": 0.560878,
-          "P99Ms": 0.701569
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000238,
-          "P95Ms": 0.000457,
-          "P99Ms": 0.023443
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 2,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 6000,
-        "Read": {
-          "Count": 6000,
-          "P50Ms": 0.426842,
-          "P95Ms": 0.600388,
-          "P99Ms": 0.755048
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 6000,
-          "P50Ms": 0.403016,
-          "P95Ms": 0.560068,
-          "P99Ms": 0.706757
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000242,
-          "P95Ms": 0.000461,
-          "P99Ms": 0.004633
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 200,
-        "Seconds": 5,
-        "Offered": 1000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1000,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 1000,
-          "P50Ms": 1.268755,
-          "P95Ms": 2.098589,
-          "P99Ms": 4.506065
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 1000,
-          "P50Ms": 0.000225,
-          "P95Ms": 0.000451,
-          "P99Ms": 0.000747
-        },
-        "WriteService": {
-          "Count": 1000,
-          "P50Ms": 1.215045,
-          "P95Ms": 2.048766,
-          "P99Ms": 4.397706
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 400,
-        "Seconds": 5,
-        "Offered": 2000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 2000,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 2000,
-          "P50Ms": 1.213993,
-          "P95Ms": 1.811791,
-          "P99Ms": 3.84991
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 2000,
-          "P50Ms": 0.000245,
-          "P95Ms": 0.000457,
-          "P99Ms": 0.005554
-        },
-        "WriteService": {
-          "Count": 2000,
-          "P50Ms": 1.176719,
-          "P95Ms": 1.763135,
-          "P99Ms": 3.822691
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 3000,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 3000,
-          "P50Ms": 1.19979,
-          "P95Ms": 1.943934,
-          "P99Ms": 4.910029
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000241,
-          "P95Ms": 0.000461,
-          "P99Ms": 0.013281
-        },
-        "WriteService": {
-          "Count": 3000,
-          "P50Ms": 1.164488,
-          "P95Ms": 1.913298,
-          "P99Ms": 4.86886
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "write",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 5998,
-        "Read": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "Write": {
-          "Count": 6000,
-          "P50Ms": 1.513388,
-          "P95Ms": 2.582149,
-          "P99Ms": 3.866778
-        },
-        "ReadService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000245,
-          "P95Ms": 0.00046,
-          "P99Ms": 0.008284
-        },
-        "WriteService": {
-          "Count": 6000,
-          "P50Ms": 1.483254,
-          "P95Ms": 2.547583,
-          "P99Ms": 3.837699
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 200,
-        "Seconds": 5,
-        "Offered": 1000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 1000,
-        "Read": {
-          "Count": 1000,
-          "P50Ms": 0.594605,
-          "P95Ms": 0.803309,
-          "P99Ms": 1.124489
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 1000,
-          "P50Ms": 0.539714,
-          "P95Ms": 0.73773,
-          "P99Ms": 1.001608
-        },
-        "SchedulerLag": {
-          "Count": 1000,
-          "P50Ms": 0.00023,
-          "P95Ms": 0.00046,
-          "P99Ms": 0.007232
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 400,
-        "Seconds": 5,
-        "Offered": 2000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 2000,
-        "Read": {
-          "Count": 2000,
-          "P50Ms": 0.488051,
-          "P95Ms": 0.668429,
-          "P99Ms": 0.89116
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 2000,
-          "P50Ms": 0.450392,
-          "P95Ms": 0.618733,
-          "P99Ms": 0.844233
-        },
-        "SchedulerLag": {
-          "Count": 2000,
-          "P50Ms": 0.000237,
-          "P95Ms": 0.000453,
-          "P99Ms": 0.001482
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 600,
-        "Seconds": 5,
-        "Offered": 3000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 3000,
-        "Read": {
-          "Count": 3000,
-          "P50Ms": 0.485542,
-          "P95Ms": 0.682088,
-          "P99Ms": 0.915755
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 3000,
-          "P50Ms": 0.452487,
-          "P95Ms": 0.634916,
-          "P99Ms": 0.811573
-        },
-        "SchedulerLag": {
-          "Count": 3000,
-          "P50Ms": 0.000238,
           "P95Ms": 0.000462,
-          "P99Ms": 0.013598
-        },
-        "WriteService": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        }
-      }
-    },
-    {
-      "System": "etcd",
-      "Repetition": 3,
-      "Workload": "read",
-      "Result": {
-        "OfferedOpsPerSecond": 1200,
-        "Seconds": 5,
-        "Offered": 6000,
-        "Dropped": 0,
-        "CompletedWithinWindow": 6000,
-        "Read": {
-          "Count": 6000,
-          "P50Ms": 0.442626,
-          "P95Ms": 0.597436,
-          "P99Ms": 0.757071
-        },
-        "Write": {
-          "Count": 0,
-          "P50Ms": 0,
-          "P95Ms": 0,
-          "P99Ms": 0
-        },
-        "ReadService": {
-          "Count": 6000,
-          "P50Ms": 0.416744,
-          "P95Ms": 0.555885,
-          "P99Ms": 0.69892
-        },
-        "SchedulerLag": {
-          "Count": 6000,
-          "P50Ms": 0.000242,
-          "P95Ms": 0.000456,
-          "P99Ms": 0.007203
+          "P99Ms": 0.086699
         },
         "WriteService": {
           "Count": 0,
@@ -2053,5 +2053,351 @@
         }
       }
     }
-  ]
+  ],
+  "clusterHealth": [
+    {
+      "Nodes": [
+        {
+          "Term": 2,
+          "Id": "af2b120cae018ada",
+          "Endpoint": "https://node-a:2379",
+          "Leader": "af2b120cae018ada"
+        },
+        {
+          "Term": 2,
+          "Id": "dfb9f2cfac85d69a",
+          "Endpoint": "https://node-b:2379",
+          "Leader": "af2b120cae018ada"
+        },
+        {
+          "Term": 2,
+          "Id": "b5a46d92ea49dedf",
+          "Endpoint": "https://node-c:2379",
+          "Leader": "af2b120cae018ada"
+        }
+      ],
+      "Repetition": 1,
+      "System": "etcd",
+      "Phase": "before"
+    },
+    {
+      "Nodes": [
+        {
+          "Term": 2,
+          "Id": "af2b120cae018ada",
+          "Endpoint": "https://node-a:2379",
+          "Leader": "af2b120cae018ada"
+        },
+        {
+          "Term": 2,
+          "Id": "dfb9f2cfac85d69a",
+          "Endpoint": "https://node-b:2379",
+          "Leader": "af2b120cae018ada"
+        },
+        {
+          "Term": 2,
+          "Id": "b5a46d92ea49dedf",
+          "Endpoint": "https://node-c:2379",
+          "Leader": "af2b120cae018ada"
+        }
+      ],
+      "Repetition": 1,
+      "System": "etcd",
+      "Phase": "after"
+    },
+    {
+      "Nodes": [
+        {
+          "Term": 3,
+          "Id": "4f325d7ca1a60fd8",
+          "Endpoint": "https://node-a:2379",
+          "Leader": "4f325d7ca1a60fd8"
+        },
+        {
+          "Term": 3,
+          "Id": "fa7ecd3da6e91019",
+          "Endpoint": "https://node-b:2379",
+          "Leader": "4f325d7ca1a60fd8"
+        },
+        {
+          "Term": 3,
+          "Id": "13e569ba7969f7f",
+          "Endpoint": "https://node-c:2379",
+          "Leader": "4f325d7ca1a60fd8"
+        }
+      ],
+      "Repetition": 2,
+      "System": "etcd",
+      "Phase": "before"
+    },
+    {
+      "Nodes": [
+        {
+          "Term": 3,
+          "Id": "4f325d7ca1a60fd8",
+          "Endpoint": "https://node-a:2379",
+          "Leader": "4f325d7ca1a60fd8"
+        },
+        {
+          "Term": 3,
+          "Id": "fa7ecd3da6e91019",
+          "Endpoint": "https://node-b:2379",
+          "Leader": "4f325d7ca1a60fd8"
+        },
+        {
+          "Term": 3,
+          "Id": "13e569ba7969f7f",
+          "Endpoint": "https://node-c:2379",
+          "Leader": "4f325d7ca1a60fd8"
+        }
+      ],
+      "Repetition": 2,
+      "System": "etcd",
+      "Phase": "after"
+    },
+    {
+      "Nodes": [
+        {
+          "Term": 2,
+          "Id": "1b2401f737213d89",
+          "Endpoint": "https://node-a:2379",
+          "Leader": "1b2401f737213d89"
+        },
+        {
+          "Term": 2,
+          "Id": "9bb3988f0cdb65c2",
+          "Endpoint": "https://node-b:2379",
+          "Leader": "1b2401f737213d89"
+        },
+        {
+          "Term": 2,
+          "Id": "9a56ace2fa33b80e",
+          "Endpoint": "https://node-c:2379",
+          "Leader": "1b2401f737213d89"
+        }
+      ],
+      "Repetition": 3,
+      "System": "etcd",
+      "Phase": "before"
+    },
+    {
+      "Nodes": [
+        {
+          "Term": 2,
+          "Id": "1b2401f737213d89",
+          "Endpoint": "https://node-a:2379",
+          "Leader": "1b2401f737213d89"
+        },
+        {
+          "Term": 2,
+          "Id": "9bb3988f0cdb65c2",
+          "Endpoint": "https://node-b:2379",
+          "Leader": "1b2401f737213d89"
+        },
+        {
+          "Term": 2,
+          "Id": "9a56ace2fa33b80e",
+          "Endpoint": "https://node-c:2379",
+          "Leader": "1b2401f737213d89"
+        }
+      ],
+      "Repetition": 3,
+      "System": "etcd",
+      "Phase": "after"
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Phase": "before",
+      "Nodes": [
+        {
+          "NodeId": "A",
+          "Copies": [
+            {
+              "NodeId": "B",
+              "State": "ready",
+              "LagEntries": 0
+            },
+            {
+              "NodeId": "C",
+              "State": "ready",
+              "LagEntries": 0
+            }
+          ]
+        },
+        {
+          "NodeId": "B",
+          "Copies": []
+        },
+        {
+          "NodeId": "C",
+          "Copies": []
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Phase": "after",
+      "Nodes": [
+        {
+          "NodeId": "A",
+          "Copies": [
+            {
+              "NodeId": "B",
+              "State": "ready",
+              "LagEntries": 0
+            },
+            {
+              "NodeId": "C",
+              "State": "ready",
+              "LagEntries": 0
+            }
+          ]
+        },
+        {
+          "NodeId": "B",
+          "Copies": []
+        },
+        {
+          "NodeId": "C",
+          "Copies": []
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Phase": "before",
+      "Nodes": [
+        {
+          "NodeId": "A",
+          "Copies": [
+            {
+              "NodeId": "B",
+              "State": "ready",
+              "LagEntries": 0
+            },
+            {
+              "NodeId": "C",
+              "State": "ready",
+              "LagEntries": 0
+            }
+          ]
+        },
+        {
+          "NodeId": "B",
+          "Copies": []
+        },
+        {
+          "NodeId": "C",
+          "Copies": []
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Phase": "after",
+      "Nodes": [
+        {
+          "NodeId": "A",
+          "Copies": [
+            {
+              "NodeId": "B",
+              "State": "ready",
+              "LagEntries": 0
+            },
+            {
+              "NodeId": "C",
+              "State": "ready",
+              "LagEntries": 0
+            }
+          ]
+        },
+        {
+          "NodeId": "B",
+          "Copies": []
+        },
+        {
+          "NodeId": "C",
+          "Copies": []
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Phase": "before",
+      "Nodes": [
+        {
+          "NodeId": "A",
+          "Copies": [
+            {
+              "NodeId": "B",
+              "State": "ready",
+              "LagEntries": 0
+            },
+            {
+              "NodeId": "C",
+              "State": "ready",
+              "LagEntries": 0
+            }
+          ]
+        },
+        {
+          "NodeId": "B",
+          "Copies": []
+        },
+        {
+          "NodeId": "C",
+          "Copies": []
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Phase": "after",
+      "Nodes": [
+        {
+          "NodeId": "A",
+          "Copies": [
+            {
+              "NodeId": "B",
+              "State": "ready",
+              "LagEntries": 0
+            },
+            {
+              "NodeId": "C",
+              "State": "ready",
+              "LagEntries": 0
+            }
+          ]
+        },
+        {
+          "NodeId": "B",
+          "Copies": []
+        },
+        {
+          "NodeId": "C",
+          "Copies": []
+        }
+      ]
+    }
+  ],
+  "acceptedChartRates": {
+    "write": [
+      200,
+      400,
+      600,
+      1200
+    ],
+    "read": [
+      200,
+      400,
+      600,
+      1200
+    ]
+  }
 }

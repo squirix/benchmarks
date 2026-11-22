@@ -30,8 +30,15 @@ var token = system == "Squirix" ? File.ReadAllText("/credentials/token.txt") : n
 var sessions = new List<ISession>(sessionCount);
 
 using var startup = new CancellationTokenSource(TimeSpan.FromMinutes(2));
+using var clusterHealth = token is null ? null : new SquirixClusterHealth(token);
 try
 {
+    if (clusterHealth is not null)
+    {
+        var nodes = await clusterHealth.WaitUntilReadyAsync(startup.Token);
+        Console.WriteLine(JsonSerializer.Serialize(new { System = system, Repetition = repetition, Phase = "before", Nodes = nodes }));
+    }
+
     for (var worker = 0; worker < sessionCount; worker++)
     {
         sessions.Add(system == "Squirix"
@@ -62,6 +69,12 @@ try
             var p99 = workload == Workload.Write ? result.Write.P99Ms : result.Read.P99Ms;
             Console.Error.WriteLine($"{system}: {kind} {rate}/s, p99 {p99:F3} ms, drops {result.Dropped}");
         }
+    }
+    if (clusterHealth is not null)
+    {
+        using var finish = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+        var nodes = await clusterHealth.ReadAsync(finish.Token);
+        Console.WriteLine(JsonSerializer.Serialize(new { System = system, Repetition = repetition, Phase = "after", Nodes = nodes }));
     }
 }
 finally

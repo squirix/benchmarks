@@ -1,5 +1,7 @@
 param(
     [switch] $Pilot,
+    [string] $OutputDirectory,
+    [ValidateRange(1, 3)]
     [int[]] $Repetitions = @(1, 2, 3),
     [ValidateSet('Squirix', 'Garnet', 'Valkey', 'Redis')]
     [string[]] $Only = @('Squirix', 'Garnet', 'Valkey', 'Redis')
@@ -27,6 +29,7 @@ if ($Pilot) {
     $rates = '2000,20000'
     $outputRoot = Join-Path $PSScriptRoot 'pilot'
 }
+if ($OutputDirectory) { $outputRoot = $OutputDirectory }
 [void][IO.Directory]::CreateDirectory($outputRoot)
 $utf8 = [Text.UTF8Encoding]::new($false)
 $images = @{
@@ -47,8 +50,10 @@ foreach ($repetition in $Repetitions) {
         if ($system -notin $Only) { continue }
         $output = Join-Path $outputRoot "$system-$repetition.jsonl"
         if (Test-Path -LiteralPath $output) {
-            throw "Measurement file already exists: $output"
+            Write-Host "Keeping completed $system repetition $repetition"
+            continue
         }
+        $partial = "$output.$runId.partial"
 
         $containerName = "squirix-bench-$runId-$($system.ToLowerInvariant())-$repetition"
         $server = @('run', '--detach', '--rm', '--name', $containerName, '--cpuset-cpus', '12-15',
@@ -86,11 +91,15 @@ foreach ($repetition in $Repetitions) {
                 '--env', 'SSL_CERT_FILE=/certs/ca.crt', $aspnetImage, 'dotnet', '/load/CacheLoad.dll',
                 $system, $repetition, $seconds, $rates)
             Invoke-BenchDocker @client | ForEach-Object {
-                if ($_ -like '{*') { [IO.File]::AppendAllText($output, $_ + "`n", $utf8) }
+                if ($_ -like '{*') { [IO.File]::AppendAllText($partial, $_ + "`n", $utf8) }
                 Write-Output $_
             }
             if ($LASTEXITCODE -ne 0) { throw "Load generation failed for $system repetition $repetition" }
-            if (!(Test-Path -LiteralPath $output)) { throw "No measurements written for $system" }
+            if (!(Test-Path -LiteralPath $partial) -or
+                @(Get-Content -LiteralPath $partial).Count -ne $rates.Split(',').Length) {
+                throw "Incomplete measurements for $system repetition $repetition"
+            }
+            [IO.File]::Move($partial, $output)
         }
         catch {
             Invoke-BenchDocker logs --tail 35 $containerName

@@ -21,3 +21,4 @@ jobs:
       - run: dotnet build single-node/CacheLoad.csproj --configuration Release --warnaserror
       - run: dotnet build quorum/CacheQuorum.csproj --configuration Release --warnaserror
       - run: python3 scripts/validate-results.py
+      - run: python3 -m unittest discover -s scripts
