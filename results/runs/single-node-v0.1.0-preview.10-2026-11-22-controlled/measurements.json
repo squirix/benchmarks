@@ -1,0 +1,2327 @@
+{
+  "environment": {
+    "measuredAt": "2026-11-22T15:49:48.7814949+07:00",
+    "cpu": "Intel(R) Core(TM) Ultra 9 285K",
+    "engine": "Docker Desktop 4.99.0 (245822)",
+    "engineVersion": "29.9.3",
+    "kernel": "6.18.58.1-microsoft-standard-WSL2",
+    "guestCpu": 24,
+    "quirks": "Shared Docker Desktop host. Other host services stayed running.",
+    "squirixServerPackageSha256": "9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405",
+    "imageDigests": [
+      "mcr.microsoft.com/dotnet/aspnet@sha256:12b1135f5f8b3c0a214f2a680ff2033dff4f684f445d6c697d9524ceeb303586",
+      "ghcr.io/microsoft/garnet@sha256:a5b11ca8292400a6239437c34c96aaa515a55ab3613ef2e41a33914405f89442",
+      "valkey/valkey@sha256:1c2b25b09f354c66fe994733acdf12fcfd4bdf6f3bd92b88a93a70378d884056",
+      "redis@sha256:1f88291b4c57bdf249f02eb085a8669889b2d2954e91d4de5118a5da6b78dd53"
+    ],
+    "dotnetRuntime": "10.0.15",
+    "serverMemoryGiB": 4,
+    "clientMemoryGiB": 3,
+    "clientCpuSet": "16-23",
+    "serverCpuSets": [
+      "12-15"
+    ],
+    "clientSessions": 48,
+    "keys": 16384,
+    "jsonValueBytes": 256
+  },
+  "systems": {
+    "Squirix": "0.1.0-preview.10",
+    "Garnet": "2.2.13",
+    "Valkey": "9.2.0",
+    "Redis": "8.10.3"
+  },
+  "testedRates": [
+    2000,
+    5000,
+    8000,
+    20000
+  ],
+  "secondsPerPoint": 6,
+  "trials": [
+    {
+      "System": "Garnet",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.156636,
+          "P95Ms": 0.272342,
+          "P99Ms": 0.378632
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.163284,
+          "P95Ms": 0.277482,
+          "P99Ms": 0.350129
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.12835,
+          "P95Ms": 0.235801,
+          "P99Ms": 0.325655
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000454,
+          "P99Ms": 0.003915
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.131698,
+          "P95Ms": 0.232021,
+          "P99Ms": 0.306316
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.098462,
+          "P95Ms": 0.180673,
+          "P99Ms": 0.299838
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.099489,
+          "P95Ms": 0.146933,
+          "P99Ms": 0.283646
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.081991,
+          "P95Ms": 0.140501,
+          "P99Ms": 0.254398
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000251,
+          "P95Ms": 0.002663,
+          "P99Ms": 0.009364
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.083051,
+          "P95Ms": 0.130427,
+          "P99Ms": 0.261858
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 47999,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.097751,
+          "P95Ms": 0.186733,
+          "P99Ms": 0.326286
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.098095,
+          "P95Ms": 0.189033,
+          "P99Ms": 0.362071
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.085133,
+          "P95Ms": 0.157817,
+          "P99Ms": 0.276766
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000455,
+          "P99Ms": 0.005247
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.086093,
+          "P95Ms": 0.161897,
+          "P99Ms": 0.304461
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119999,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.081014,
+          "P95Ms": 0.21142,
+          "P99Ms": 0.765792
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.081989,
+          "P95Ms": 0.187837,
+          "P99Ms": 0.677674
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.070466,
+          "P95Ms": 0.135685,
+          "P99Ms": 0.279256
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000249,
+          "P95Ms": 0.000521,
+          "P99Ms": 0.386164
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.071655,
+          "P95Ms": 0.130154,
+          "P99Ms": 0.259073
+        }
+      },
+      "EarlierWindows": [
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119999,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.0767,
+            "P95Ms": 0.227482,
+            "P99Ms": 0.869365
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.078139,
+            "P95Ms": 0.21513,
+            "P99Ms": 0.602053
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.065752,
+            "P95Ms": 0.135068,
+            "P99Ms": 0.27383
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.000248,
+            "P95Ms": 0.002108,
+            "P99Ms": 0.538907
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.066713,
+            "P95Ms": 0.130292,
+            "P99Ms": 0.261817
+          }
+        }
+      ]
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.15909,
+          "P95Ms": 0.252782,
+          "P99Ms": 0.346772
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.163232,
+          "P95Ms": 0.25988,
+          "P99Ms": 0.574012
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.130603,
+          "P95Ms": 0.215726,
+          "P99Ms": 0.300767
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.000451,
+          "P99Ms": 0.000469
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.132508,
+          "P95Ms": 0.213264,
+          "P99Ms": 0.38635
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.098838,
+          "P95Ms": 0.177171,
+          "P99Ms": 0.30274
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.099023,
+          "P95Ms": 0.181028,
+          "P99Ms": 0.292873
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.082313,
+          "P95Ms": 0.136554,
+          "P99Ms": 0.25362
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.00052
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.083238,
+          "P95Ms": 0.140905,
+          "P99Ms": 0.252684
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.094523,
+          "P95Ms": 0.171408,
+          "P99Ms": 0.296464
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.097305,
+          "P95Ms": 0.181718,
+          "P99Ms": 0.327769
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.081822,
+          "P95Ms": 0.141084,
+          "P99Ms": 0.241089
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000242,
+          "P95Ms": 0.00046,
+          "P99Ms": 0.011336
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.083799,
+          "P95Ms": 0.154198,
+          "P99Ms": 0.250213
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119999,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.082704,
+          "P95Ms": 0.18906,
+          "P99Ms": 0.435364
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.083169,
+          "P95Ms": 0.17443,
+          "P99Ms": 0.431904
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.07033,
+          "P95Ms": 0.136762,
+          "P99Ms": 0.26176
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000465,
+          "P99Ms": 0.210325
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.071009,
+          "P95Ms": 0.128095,
+          "P99Ms": 0.245356
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.156743,
+          "P95Ms": 0.258872,
+          "P99Ms": 0.355059
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.161024,
+          "P95Ms": 0.254139,
+          "P99Ms": 0.344234
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.12833,
+          "P95Ms": 0.223974,
+          "P99Ms": 0.315801
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000236,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.000669
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.129227,
+          "P95Ms": 0.215034,
+          "P99Ms": 0.284008
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.098293,
+          "P95Ms": 0.15443,
+          "P99Ms": 0.288691
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.100387,
+          "P95Ms": 0.165315,
+          "P99Ms": 0.30802
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.081682,
+          "P95Ms": 0.125,
+          "P99Ms": 0.248606
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000451,
+          "P99Ms": 0.000475
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.083783,
+          "P95Ms": 0.131636,
+          "P99Ms": 0.269505
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.093241,
+          "P95Ms": 0.177582,
+          "P99Ms": 0.323385
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.09512,
+          "P95Ms": 0.174962,
+          "P99Ms": 0.328819
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.080826,
+          "P95Ms": 0.145949,
+          "P99Ms": 0.264773
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000455,
+          "P99Ms": 0.00527
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.081799,
+          "P95Ms": 0.142328,
+          "P99Ms": 0.266419
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Garnet",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 120000,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.080925,
+          "P95Ms": 0.179439,
+          "P99Ms": 0.447931
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.083571,
+          "P95Ms": 0.208828,
+          "P99Ms": 0.467777
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.069015,
+          "P95Ms": 0.12982,
+          "P99Ms": 0.256425
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000467,
+          "P99Ms": 0.23459
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.073728,
+          "P95Ms": 0.149948,
+          "P99Ms": 0.270536
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.146454,
+          "P95Ms": 0.265216,
+          "P99Ms": 0.338227
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.147473,
+          "P95Ms": 0.280807,
+          "P99Ms": 0.380816
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.114314,
+          "P95Ms": 0.226158,
+          "P99Ms": 0.290062
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000236,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000754
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.11674,
+          "P95Ms": 0.240824,
+          "P99Ms": 0.348824
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.070642,
+          "P95Ms": 0.14889,
+          "P99Ms": 0.259611
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.076187,
+          "P95Ms": 0.157911,
+          "P99Ms": 0.278364
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.051024,
+          "P95Ms": 0.118903,
+          "P99Ms": 0.229759
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.001925
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.055353,
+          "P95Ms": 0.122915,
+          "P99Ms": 0.233816
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.061905,
+          "P95Ms": 0.12827,
+          "P99Ms": 0.280571
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.064841,
+          "P95Ms": 0.127067,
+          "P99Ms": 0.267564
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.045113,
+          "P95Ms": 0.09895,
+          "P99Ms": 0.217345
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000455,
+          "P99Ms": 0.006686
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.047176,
+          "P95Ms": 0.104998,
+          "P99Ms": 0.230512
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 120000,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.047878,
+          "P95Ms": 0.166481,
+          "P99Ms": 0.53232
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.064646,
+          "P95Ms": 0.202571,
+          "P99Ms": 0.557371
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.044351,
+          "P95Ms": 0.10997,
+          "P99Ms": 0.222996
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000247,
+          "P95Ms": 0.000469,
+          "P99Ms": 0.322065
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.054116,
+          "P95Ms": 0.139341,
+          "P99Ms": 0.252205
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.150052,
+          "P95Ms": 0.272142,
+          "P99Ms": 0.344367
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.14745,
+          "P95Ms": 0.257202,
+          "P99Ms": 0.316699
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.117847,
+          "P95Ms": 0.231278,
+          "P99Ms": 0.295159
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000451,
+          "P99Ms": 0.00047
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.114442,
+          "P95Ms": 0.221631,
+          "P99Ms": 0.278623
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.070945,
+          "P95Ms": 0.173762,
+          "P99Ms": 0.266788
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.073681,
+          "P95Ms": 0.163818,
+          "P99Ms": 0.311742
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.051383,
+          "P95Ms": 0.145078,
+          "P99Ms": 0.229839
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000478
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.054018,
+          "P95Ms": 0.130507,
+          "P99Ms": 0.239458
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.061717,
+          "P95Ms": 0.131335,
+          "P99Ms": 0.268029
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.065758,
+          "P95Ms": 0.164384,
+          "P99Ms": 0.284819
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.044671,
+          "P95Ms": 0.100997,
+          "P99Ms": 0.213864
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.002596
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.048142,
+          "P95Ms": 0.124824,
+          "P99Ms": 0.221117
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119999,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.057841,
+          "P95Ms": 0.158166,
+          "P99Ms": 0.436506
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.065826,
+          "P95Ms": 0.151639,
+          "P99Ms": 0.430749
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.048596,
+          "P95Ms": 0.115454,
+          "P99Ms": 0.219819
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000244,
+          "P95Ms": 0.000465,
+          "P99Ms": 0.244324
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.053634,
+          "P95Ms": 0.117619,
+          "P99Ms": 0.21226
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.140592,
+          "P95Ms": 0.262757,
+          "P99Ms": 0.343889
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.143905,
+          "P95Ms": 0.250784,
+          "P99Ms": 0.312188
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.110944,
+          "P95Ms": 0.224716,
+          "P99Ms": 0.294041
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000857
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.113962,
+          "P95Ms": 0.211858,
+          "P99Ms": 0.271312
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.068384,
+          "P95Ms": 0.152109,
+          "P99Ms": 0.251732
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.070333,
+          "P95Ms": 0.151074,
+          "P99Ms": 0.25764
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.049895,
+          "P95Ms": 0.11902,
+          "P99Ms": 0.223127
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000235,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000855
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.051934,
+          "P95Ms": 0.118169,
+          "P99Ms": 0.225292
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.062591,
+          "P95Ms": 0.141117,
+          "P99Ms": 0.269423
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.067686,
+          "P95Ms": 0.179425,
+          "P99Ms": 0.283408
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.045896,
+          "P95Ms": 0.109886,
+          "P99Ms": 0.216454
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.002851
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.049758,
+          "P95Ms": 0.145834,
+          "P99Ms": 0.229979
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Redis",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 120000,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.052216,
+          "P95Ms": 0.162275,
+          "P99Ms": 0.594339
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.062707,
+          "P95Ms": 0.151125,
+          "P99Ms": 0.59432
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.046864,
+          "P95Ms": 0.111682,
+          "P99Ms": 0.236545
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000467,
+          "P99Ms": 0.268639
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.050714,
+          "P95Ms": 0.118602,
+          "P99Ms": 0.239123
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.227665,
+          "P95Ms": 0.337392,
+          "P99Ms": 2.717569
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.251902,
+          "P95Ms": 0.321364,
+          "P99Ms": 4.237704
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.204889,
+          "P95Ms": 0.302106,
+          "P99Ms": 0.832747
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.003778
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.226883,
+          "P95Ms": 0.284186,
+          "P99Ms": 3.899235
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.190142,
+          "P95Ms": 0.290179,
+          "P99Ms": 0.527353
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.207857,
+          "P95Ms": 0.288168,
+          "P99Ms": 0.626123
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.178602,
+          "P95Ms": 0.258432,
+          "P99Ms": 0.441158
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.039847
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.1963,
+          "P95Ms": 0.26011,
+          "P99Ms": 0.479564
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 47999,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.189037,
+          "P95Ms": 0.330813,
+          "P99Ms": 0.916349
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.200277,
+          "P95Ms": 0.35199,
+          "P99Ms": 0.937829
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.168671,
+          "P95Ms": 0.280687,
+          "P99Ms": 0.598547
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000463,
+          "P99Ms": 0.162143
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.180162,
+          "P95Ms": 0.301938,
+          "P99Ms": 0.628311
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119998,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.095851,
+          "P95Ms": 0.867351,
+          "P99Ms": 2.844218
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.123003,
+          "P95Ms": 0.893116,
+          "P99Ms": 2.906099
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.09344,
+          "P95Ms": 0.460526,
+          "P99Ms": 1.731469
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000265,
+          "P95Ms": 0.083276,
+          "P99Ms": 0.73489
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.120484,
+          "P95Ms": 0.467288,
+          "P99Ms": 1.80209
+        }
+      },
+      "EarlierWindows": [
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119999,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.093848,
+            "P95Ms": 0.917594,
+            "P99Ms": 1.897445
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.117115,
+            "P95Ms": 0.919518,
+            "P99Ms": 1.849949
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.091489,
+            "P95Ms": 0.469275,
+            "P99Ms": 1.441357
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.000264,
+            "P95Ms": 0.133449,
+            "P99Ms": 0.822066
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.114853,
+            "P95Ms": 0.470123,
+            "P99Ms": 1.364742
+          }
+        },
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119997,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.095991,
+            "P95Ms": 1.194405,
+            "P99Ms": 6.475885
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.123087,
+            "P95Ms": 1.220144,
+            "P99Ms": 6.209995
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.09346,
+            "P95Ms": 0.51954,
+            "P99Ms": 2.579219
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.000265,
+            "P95Ms": 0.176412,
+            "P99Ms": 0.830732
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.120526,
+            "P95Ms": 0.534459,
+            "P99Ms": 2.459638
+          }
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.230517,
+          "P95Ms": 0.31753,
+          "P99Ms": 0.453442
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.249652,
+          "P95Ms": 0.336434,
+          "P99Ms": 0.532708
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.206945,
+          "P95Ms": 0.279652,
+          "P99Ms": 0.416101
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.028431
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.226731,
+          "P95Ms": 0.309719,
+          "P99Ms": 0.501989
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.188502,
+          "P95Ms": 0.289452,
+          "P99Ms": 0.590115
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.205328,
+          "P95Ms": 0.292078,
+          "P99Ms": 0.487824
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.176888,
+          "P95Ms": 0.252748,
+          "P99Ms": 0.446788
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000457,
+          "P99Ms": 0.085906
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.193844,
+          "P95Ms": 0.258594,
+          "P99Ms": 0.429337
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 47999,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.186858,
+          "P95Ms": 0.330895,
+          "P99Ms": 0.990824
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.195901,
+          "P95Ms": 0.336179,
+          "P99Ms": 1.050424
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.166438,
+          "P95Ms": 0.270034,
+          "P99Ms": 0.775981
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000245,
+          "P95Ms": 0.000466,
+          "P99Ms": 0.226651
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.176693,
+          "P95Ms": 0.284454,
+          "P99Ms": 0.973433
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119999,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.093418,
+          "P95Ms": 0.930478,
+          "P99Ms": 2.791763
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.126325,
+          "P95Ms": 0.90372,
+          "P99Ms": 2.663177
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.091042,
+          "P95Ms": 0.464451,
+          "P99Ms": 1.891135
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000263,
+          "P95Ms": 0.126423,
+          "P99Ms": 0.775535
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.123903,
+          "P95Ms": 0.477917,
+          "P99Ms": 1.802315
+        }
+      },
+      "EarlierWindows": [
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119999,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.094856,
+            "P95Ms": 0.932414,
+            "P99Ms": 3.003814
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.1199,
+            "P95Ms": 0.954901,
+            "P99Ms": 3.037689
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.092333,
+            "P95Ms": 0.471337,
+            "P99Ms": 2.057567
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.000267,
+            "P95Ms": 0.115073,
+            "P99Ms": 0.738215
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.11742,
+            "P95Ms": 0.473372,
+            "P99Ms": 1.995123
+          }
+        },
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119998,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.093588,
+            "P95Ms": 0.815921,
+            "P99Ms": 2.774356
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.116785,
+            "P95Ms": 0.82718,
+            "P99Ms": 2.784947
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.091169,
+            "P95Ms": 0.449284,
+            "P99Ms": 1.985197
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.00026,
+            "P95Ms": 0.055019,
+            "P99Ms": 0.610197
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.11457,
+            "P95Ms": 0.450963,
+            "P99Ms": 2.028397
+          }
+        }
+      ]
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.223136,
+          "P95Ms": 0.306823,
+          "P99Ms": 0.44845
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.24498,
+          "P95Ms": 0.30523,
+          "P99Ms": 0.440871
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.199907,
+          "P95Ms": 0.264934,
+          "P99Ms": 0.398173
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000455,
+          "P99Ms": 0.031959
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.222231,
+          "P95Ms": 0.281821,
+          "P99Ms": 0.398985
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 29999,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.191941,
+          "P95Ms": 0.30843,
+          "P99Ms": 0.791196
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.209075,
+          "P95Ms": 0.319073,
+          "P99Ms": 0.850994
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.179624,
+          "P95Ms": 0.27203,
+          "P99Ms": 0.57272
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000241,
+          "P95Ms": 0.00046,
+          "P99Ms": 0.098586
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.197981,
+          "P95Ms": 0.280805,
+          "P99Ms": 0.59061
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 47999,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.190162,
+          "P95Ms": 0.341773,
+          "P99Ms": 0.944283
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.200628,
+          "P95Ms": 0.359266,
+          "P99Ms": 1.002941
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.168659,
+          "P95Ms": 0.281974,
+          "P99Ms": 0.734933
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000243,
+          "P95Ms": 0.000464,
+          "P99Ms": 0.269961
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.180551,
+          "P95Ms": 0.294252,
+          "P99Ms": 0.679056
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Squirix",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119999,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.093398,
+          "P95Ms": 0.94814,
+          "P99Ms": 3.922943
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.124992,
+          "P95Ms": 0.958133,
+          "P99Ms": 3.715272
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.090993,
+          "P95Ms": 0.471097,
+          "P99Ms": 2.348505
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000263,
+          "P95Ms": 0.103708,
+          "P99Ms": 0.729899
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.122452,
+          "P95Ms": 0.484672,
+          "P99Ms": 2.342927
+        }
+      },
+      "EarlierWindows": [
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119999,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.094884,
+            "P95Ms": 1.030321,
+            "P99Ms": 2.744716
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.119071,
+            "P95Ms": 1.021861,
+            "P99Ms": 2.722969
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.092409,
+            "P95Ms": 0.484105,
+            "P99Ms": 1.844715
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.000264,
+            "P95Ms": 0.167533,
+            "P99Ms": 0.824959
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.116833,
+            "P95Ms": 0.480427,
+            "P99Ms": 1.784631
+          }
+        },
+        {
+          "OfferedOpsPerSecond": 20000,
+          "Seconds": 6,
+          "Offered": 120000,
+          "Dropped": 0,
+          "CompletedWithinWindow": 119993,
+          "Read": {
+            "Count": 114000,
+            "P50Ms": 0.089177,
+            "P95Ms": 0.667218,
+            "P99Ms": 2.05296
+          },
+          "Write": {
+            "Count": 6000,
+            "P50Ms": 0.117978,
+            "P95Ms": 0.698567,
+            "P99Ms": 1.993558
+          },
+          "ReadService": {
+            "Count": 114000,
+            "P50Ms": 0.086997,
+            "P95Ms": 0.419028,
+            "P99Ms": 1.491549
+          },
+          "SchedulerLag": {
+            "Count": 120000,
+            "P50Ms": 0.000259,
+            "P95Ms": 0.05519,
+            "P99Ms": 0.504821
+          },
+          "WriteService": {
+            "Count": 6000,
+            "P50Ms": 0.114898,
+            "P95Ms": 0.439563,
+            "P99Ms": 1.514973
+          }
+        }
+      ]
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.138626,
+          "P95Ms": 0.261232,
+          "P99Ms": 0.364785
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.142424,
+          "P95Ms": 0.273765,
+          "P99Ms": 0.397479
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.110284,
+          "P95Ms": 0.221296,
+          "P99Ms": 0.304623
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.000507
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.113581,
+          "P95Ms": 0.233081,
+          "P99Ms": 0.323185
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.069053,
+          "P95Ms": 0.137162,
+          "P99Ms": 0.253795
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.072719,
+          "P95Ms": 0.126963,
+          "P99Ms": 0.223629
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.050356,
+          "P95Ms": 0.110596,
+          "P99Ms": 0.220324
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000239,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.00066
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.053372,
+          "P95Ms": 0.108457,
+          "P99Ms": 0.176688
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 47999,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.062641,
+          "P95Ms": 0.131013,
+          "P99Ms": 0.262195
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.065327,
+          "P95Ms": 0.134084,
+          "P99Ms": 0.270459
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.046119,
+          "P95Ms": 0.105261,
+          "P99Ms": 0.211939
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.00024,
+          "P95Ms": 0.000454,
+          "P99Ms": 0.004693
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.048492,
+          "P95Ms": 0.109733,
+          "P99Ms": 0.215979
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 1,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 119999,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.048431,
+          "P95Ms": 0.17392,
+          "P99Ms": 0.66743
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.065746,
+          "P95Ms": 0.220109,
+          "P99Ms": 1.056243
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.044701,
+          "P95Ms": 0.114361,
+          "P99Ms": 0.224728
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000247,
+          "P95Ms": 0.00047,
+          "P99Ms": 0.430841
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.051661,
+          "P95Ms": 0.123099,
+          "P99Ms": 0.249393
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.141475,
+          "P95Ms": 0.25271,
+          "P99Ms": 0.324966
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.148528,
+          "P95Ms": 0.272673,
+          "P99Ms": 0.341359
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.110676,
+          "P95Ms": 0.214603,
+          "P99Ms": 0.287265
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000192,
+          "P95Ms": 0.00039,
+          "P99Ms": 0.000464
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.118069,
+          "P95Ms": 0.239076,
+          "P99Ms": 0.29819
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.069573,
+          "P95Ms": 0.144941,
+          "P99Ms": 0.259145
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.07349,
+          "P95Ms": 0.152033,
+          "P99Ms": 0.257247
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.050788,
+          "P95Ms": 0.118667,
+          "P99Ms": 0.225329
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.00047
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.053797,
+          "P95Ms": 0.126465,
+          "P99Ms": 0.23219
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.061737,
+          "P95Ms": 0.125385,
+          "P99Ms": 0.252506
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.063719,
+          "P95Ms": 0.121743,
+          "P99Ms": 0.248092
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.044552,
+          "P95Ms": 0.097539,
+          "P99Ms": 0.211643
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000236,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.001632
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.046046,
+          "P95Ms": 0.095448,
+          "P99Ms": 0.22222
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 2,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 120000,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.063101,
+          "P95Ms": 0.182886,
+          "P99Ms": 0.966846
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.066117,
+          "P95Ms": 0.167768,
+          "P99Ms": 0.851188
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.049697,
+          "P95Ms": 0.118917,
+          "P99Ms": 0.2664
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000246,
+          "P95Ms": 0.000468,
+          "P99Ms": 0.310703
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.052788,
+          "P95Ms": 0.11816,
+          "P99Ms": 0.266229
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 2000,
+        "Seconds": 6,
+        "Offered": 12000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 12000,
+        "Read": {
+          "Count": 11400,
+          "P50Ms": 0.140144,
+          "P95Ms": 0.260109,
+          "P99Ms": 0.339856
+        },
+        "Write": {
+          "Count": 600,
+          "P50Ms": 0.148557,
+          "P95Ms": 0.262347,
+          "P99Ms": 0.371728
+        },
+        "ReadService": {
+          "Count": 11400,
+          "P50Ms": 0.110733,
+          "P95Ms": 0.223414,
+          "P99Ms": 0.29592
+        },
+        "SchedulerLag": {
+          "Count": 12000,
+          "P50Ms": 0.000238,
+          "P95Ms": 0.000452,
+          "P99Ms": 0.000862
+        },
+        "WriteService": {
+          "Count": 600,
+          "P50Ms": 0.116668,
+          "P95Ms": 0.223426,
+          "P99Ms": 0.345953
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 5000,
+        "Seconds": 6,
+        "Offered": 30000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 30000,
+        "Read": {
+          "Count": 28500,
+          "P50Ms": 0.070712,
+          "P95Ms": 0.160122,
+          "P99Ms": 0.258596
+        },
+        "Write": {
+          "Count": 1500,
+          "P50Ms": 0.073492,
+          "P95Ms": 0.144084,
+          "P99Ms": 0.217796
+        },
+        "ReadService": {
+          "Count": 28500,
+          "P50Ms": 0.051337,
+          "P95Ms": 0.129943,
+          "P99Ms": 0.227602
+        },
+        "SchedulerLag": {
+          "Count": 30000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.00045,
+          "P99Ms": 0.000469
+        },
+        "WriteService": {
+          "Count": 1500,
+          "P50Ms": 0.053369,
+          "P95Ms": 0.123965,
+          "P99Ms": 0.197122
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 8000,
+        "Seconds": 6,
+        "Offered": 48000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 48000,
+        "Read": {
+          "Count": 45600,
+          "P50Ms": 0.06308,
+          "P95Ms": 0.123067,
+          "P99Ms": 0.249402
+        },
+        "Write": {
+          "Count": 2400,
+          "P50Ms": 0.065963,
+          "P95Ms": 0.12706,
+          "P99Ms": 0.267875
+        },
+        "ReadService": {
+          "Count": 45600,
+          "P50Ms": 0.046098,
+          "P95Ms": 0.095677,
+          "P99Ms": 0.204142
+        },
+        "SchedulerLag": {
+          "Count": 48000,
+          "P50Ms": 0.000237,
+          "P95Ms": 0.000453,
+          "P99Ms": 0.003848
+        },
+        "WriteService": {
+          "Count": 2400,
+          "P50Ms": 0.048137,
+          "P95Ms": 0.101572,
+          "P99Ms": 0.230643
+        }
+      },
+      "EarlierWindows": []
+    },
+    {
+      "System": "Valkey",
+      "Repetition": 3,
+      "Result": {
+        "OfferedOpsPerSecond": 20000,
+        "Seconds": 6,
+        "Offered": 120000,
+        "Dropped": 0,
+        "CompletedWithinWindow": 120000,
+        "Read": {
+          "Count": 114000,
+          "P50Ms": 0.064691,
+          "P95Ms": 0.190215,
+          "P99Ms": 0.748196
+        },
+        "Write": {
+          "Count": 6000,
+          "P50Ms": 0.067739,
+          "P95Ms": 0.171417,
+          "P99Ms": 0.742029
+        },
+        "ReadService": {
+          "Count": 114000,
+          "P50Ms": 0.050752,
+          "P95Ms": 0.124963,
+          "P99Ms": 0.251273
+        },
+        "SchedulerLag": {
+          "Count": 120000,
+          "P50Ms": 0.000247,
+          "P95Ms": 0.000469,
+          "P99Ms": 0.382412
+        },
+        "WriteService": {
+          "Count": 6000,
+          "P50Ms": 0.054596,
+          "P95Ms": 0.124097,
+          "P99Ms": 0.253698
+        }
+      },
+      "EarlierWindows": []
+    }
+  ],
+  "acceptedChartRates": [
+    2000,
+    5000,
+    8000
+  ]
+}
