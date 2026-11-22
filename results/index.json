@@ -84,5 +84,106 @@
       ]
     }
   ],
-  "quorum": []
+  "quorum": [
+    {
+      "version": "v0.1.0-preview.10",
+      "date": "2026-11-22",
+      "series": "Three-node quorum · Docker Desktop loopback · series 1",
+      "setup": "Shared Docker Desktop VM · 3 nodes, 4 vCPUs each · persistent volumes · client TLS, peer mTLS · 256-byte JSON values",
+      "referenceLoad": 600,
+      "report": "runs/quorum-v0.1.0-preview.10-2026-11-22/",
+      "systems": [
+        {
+          "name": "Squirix",
+          "version": "0.1.0-preview.10",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 9.434037
+            },
+            {
+              "offered": 400,
+              "p99": 13.89246
+            },
+            {
+              "offered": 600,
+              "p99": 12.897252
+            },
+            {
+              "offered": 1200,
+              "p99": 13.3306
+            }
+          ]
+        },
+        {
+          "name": "etcd",
+          "version": "3.7.4",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 3.078847
+            },
+            {
+              "offered": 400,
+              "p99": 3.84991
+            },
+            {
+              "offered": 600,
+              "p99": 4.910029
+            },
+            {
+              "offered": 1200,
+              "p99": 5.047761
+            }
+          ]
+        }
+      ],
+      "readSystems": [
+        {
+          "name": "Squirix",
+          "version": "0.1.0-preview.10",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 1.719264
+            },
+            {
+              "offered": 400,
+              "p99": 1.533874
+            },
+            {
+              "offered": 600,
+              "p99": 1.068836
+            },
+            {
+              "offered": 1200,
+              "p99": 1.292582
+            }
+          ]
+        },
+        {
+          "name": "etcd",
+          "version": "3.7.4",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 1.137527
+            },
+            {
+              "offered": 400,
+              "p99": 0.89116
+            },
+            {
+              "offered": 600,
+              "p99": 0.764907
+            },
+            {
+              "offered": 1200,
+              "p99": 0.757071
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

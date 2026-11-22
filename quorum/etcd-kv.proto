@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package etcdserverpb;
+option csharp_namespace = "Squirix.Benchmarks.Etcd";
+
+// Wire-compatible subset of etcd v3.7.4's etcdserverpb KV API.
+service KV {
+  rpc Range(RangeRequest) returns (RangeResponse);
+  rpc Put(PutRequest) returns (PutResponse);
+}
+
+message RangeRequest {
+  bytes key = 1;
+  bool serializable = 7;
+}
+
+message RangeResponse {
+  repeated KeyValue kvs = 2;
+}
+
+message KeyValue {
+  bytes key = 1;
+  bytes value = 5;
+}
+
+message PutRequest {
+  bytes key = 1;
+  bytes value = 2;
+}
+
+message PutResponse {
+  ResponseHeader header = 1;
+}
+
+message ResponseHeader {
+  int64 revision = 3;
+}

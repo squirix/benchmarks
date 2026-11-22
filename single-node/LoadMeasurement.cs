@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 internal static class LoadMeasurement
 {
     internal static async Task<PointResult> MeasureAsync(
-        IReadOnlyList<ISession> sessions, int rate, int seconds, int seed, int keyCount)
+        IReadOnlyList<ISession> sessions, int rate, int seconds, int seed, int keyCount, Workload workload = Workload.Mixed)
     {
         var total = checked(rate * seconds);
         var random = new Random(seed);
@@ -35,7 +35,7 @@ internal static class LoadMeasurement
             await foreach (var work in queue.Reader.ReadAllAsync(timeout.Token))
             {
                 var dispatched = Stopwatch.GetTimestamp();
-                await session.ExecuteAsync(keyIds[work.Index], work.Index % 20 == 0, timeout.Token);
+                await session.ExecuteAsync(keyIds[work.Index], IsWrite(workload, work.Index), timeout.Token);
                 var completed = Stopwatch.GetTimestamp();
                 latency[work.Index] = completed - work.Due;
                 serviceTime[work.Index] = completed - dispatched;
@@ -66,12 +66,16 @@ internal static class LoadMeasurement
         var reads = new List<long>(total);
         var writes = new List<long>(total / 20);
         var readService = new List<long>(total);
+        var writeService = new List<long>(total / 20);
         for (var i = 0; i < total; i++)
         {
             if (latency[i] == 0)
                 continue;
-            if (i % 20 == 0)
+            if (IsWrite(workload, i))
+            {
                 writes.Add(latency[i]);
+                writeService.Add(serviceTime[i]);
+            }
             else
             {
                 reads.Add(latency[i]);
@@ -81,14 +85,20 @@ internal static class LoadMeasurement
 
         return new PointResult(rate, seconds, total, dropped, completedInWindow.Count(static done => done),
             Distribution.From(reads), Distribution.From(writes), Distribution.From(readService),
-            Distribution.From(new List<long>(schedulerLag)));
+            Distribution.From(new List<long>(schedulerLag)), Distribution.From(writeService));
     }
+
+    private static bool IsWrite(Workload workload, int index) =>
+        workload == Workload.Write || (workload == Workload.Mixed && index % 20 == 0);
 }
+
+internal enum Workload { Mixed, Read, Write }
 
 internal readonly record struct Work(int Index, long Due);
 
 internal sealed record PointResult(int OfferedOpsPerSecond, int Seconds, int Offered, int Dropped,
-    int CompletedWithinWindow, Distribution Read, Distribution Write, Distribution ReadService, Distribution SchedulerLag);
+    int CompletedWithinWindow, Distribution Read, Distribution Write, Distribution ReadService, Distribution SchedulerLag,
+    Distribution WriteService);
 
 internal readonly record struct Distribution(int Count, double P50Ms, double P95Ms, double P99Ms)
 {

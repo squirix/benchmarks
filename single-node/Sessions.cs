@@ -29,9 +29,16 @@ internal sealed class SquirixSession : ISession
         _keys = keys;
     }
 
-    public static async Task<ISession> ConnectAsync(Uri endpoint, string[] keys, CancellationToken cancellationToken)
+    public static async Task<ISession> ConnectAsync(
+        Uri endpoint, string[] keys, CancellationToken cancellationToken, string? token = null)
     {
-        var client = await SquirixClient.ConnectAsync(endpoint, cancellationToken);
+        var client = token is null
+            ? await SquirixClient.ConnectAsync(endpoint, cancellationToken)
+            : await SquirixClient.ConnectAsync(options =>
+            {
+                options.Endpoints.Add(endpoint);
+                options.BearerTokenProvider = _ => ValueTask.FromResult(token);
+            }, cancellationToken);
         try
         {
             var cache = await client.GetCacheAsync<string>("local-benchmark", cancellationToken);
