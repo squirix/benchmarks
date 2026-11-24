@@ -5,8 +5,8 @@ The [results index](results/index.json) lists the published runs and the measure
 
 | Scenario | Method | Runs |
 | --- | --- | --- |
-| Single-node cache | [Method and commands](methodology/single-node.md) | [Squirix v0.1.0-preview.10](results/runs/single-node-v0.1.0-preview.10-2026-11-22-controlled/README.md) |
-| Quorum cluster | [Method and commands](methodology/quorum.md) | [Squirix v0.1.0-preview.10](results/runs/quorum-v0.1.0-preview.10-2026-11-22-verified/README.md) |
+| Single-node cache | [Method and commands](methodology/single-node.md) | [v0.2.0-preview.1](results/runs/single-node-v0.2.0-preview.1-2026-11-24-controlled/README.md), [v0.1.0-preview.10](results/runs/single-node-v0.1.0-preview.10-2026-11-22-controlled/README.md) |
+| Quorum cluster | [Method and commands](methodology/quorum.md) | [v0.2.0-preview.1](results/runs/quorum-v0.2.0-preview.1-2026-11-24-verified/README.md), [v0.1.0-preview.10](results/runs/quorum-v0.1.0-preview.10-2026-11-22-verified/README.md) |
 
 The harnesses are in [single-node](single-node/) and [quorum](quorum/).
 Each run keeps its configuration, measurements and reproduction details together.

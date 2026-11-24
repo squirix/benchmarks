@@ -2,6 +2,88 @@
   "schemaVersion": 1,
   "cache": [
     {
+      "version": "v0.2.0-preview.1",
+      "date": "2026-11-24",
+      "series": "Single-node 95/5 · Docker Desktop loopback · scheduler-checked",
+      "setup": "Shared Docker Desktop VM · loopback TLS · 4 server vCPUs · 95% GET / 5% SET · 256-byte JSON values",
+      "referenceLoad": 5000,
+      "report": "runs/single-node-v0.2.0-preview.1-2026-11-24-controlled/",
+      "systems": [
+        {
+          "name": "Squirix",
+          "version": "0.2.0-preview.1",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.370202
+            },
+            {
+              "offered": 5000,
+              "p99": 0.359809
+            },
+            {
+              "offered": 8000,
+              "p99": 0.379267
+            }
+          ]
+        },
+        {
+          "name": "Garnet",
+          "version": "2.2.13",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.311314
+            },
+            {
+              "offered": 5000,
+              "p99": 0.288012
+            },
+            {
+              "offered": 8000,
+              "p99": 0.314587
+            }
+          ]
+        },
+        {
+          "name": "Valkey",
+          "version": "9.2.0",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.277048
+            },
+            {
+              "offered": 5000,
+              "p99": 0.264938
+            },
+            {
+              "offered": 8000,
+              "p99": 0.23249
+            }
+          ]
+        },
+        {
+          "name": "Redis",
+          "version": "8.10.3",
+          "points": [
+            {
+              "offered": 2000,
+              "p99": 0.257464
+            },
+            {
+              "offered": 5000,
+              "p99": 0.216178
+            },
+            {
+              "offered": 8000,
+              "p99": 0.217207
+            }
+          ]
+        }
+      ]
+    },
+    {
       "version": "v0.1.0-preview.10",
       "date": "2026-11-22",
       "series": "Single-node 95/5 · Docker Desktop loopback · scheduler-checked",
@@ -85,6 +167,106 @@
     }
   ],
   "quorum": [
+    {
+      "version": "v0.2.0-preview.1",
+      "date": "2026-11-24",
+      "series": "Three-node quorum · Docker Desktop loopback · health-checked",
+      "setup": "Shared Docker Desktop VM · 3 nodes, 4 vCPUs each · persistent volumes · client TLS, peer mTLS · 256-byte JSON values",
+      "referenceLoad": 600,
+      "report": "runs/quorum-v0.2.0-preview.1-2026-11-24-verified/",
+      "systems": [
+        {
+          "name": "Squirix",
+          "version": "0.2.0-preview.1",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 8.330005
+            },
+            {
+              "offered": 400,
+              "p99": 8.412535
+            },
+            {
+              "offered": 600,
+              "p99": 7.858779
+            },
+            {
+              "offered": 1200,
+              "p99": 10.288753
+            }
+          ]
+        },
+        {
+          "name": "etcd",
+          "version": "3.7.4",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 3.2233
+            },
+            {
+              "offered": 400,
+              "p99": 2.983797
+            },
+            {
+              "offered": 600,
+              "p99": 2.702958
+            },
+            {
+              "offered": 1200,
+              "p99": 3.248123
+            }
+          ]
+        }
+      ],
+      "readSystems": [
+        {
+          "name": "Squirix",
+          "version": "0.2.0-preview.1",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 0.929686
+            },
+            {
+              "offered": 400,
+              "p99": 0.764554
+            },
+            {
+              "offered": 600,
+              "p99": 0.721846
+            },
+            {
+              "offered": 1200,
+              "p99": 0.542422
+            }
+          ]
+        },
+        {
+          "name": "etcd",
+          "version": "3.7.4",
+          "points": [
+            {
+              "offered": 200,
+              "p99": 0.91085
+            },
+            {
+              "offered": 400,
+              "p99": 0.762276
+            },
+            {
+              "offered": 600,
+              "p99": 0.674537
+            },
+            {
+              "offered": 1200,
+              "p99": 0.663915
+            }
+          ]
+        }
+      ]
+    },
     {
       "version": "v0.1.0-preview.10",
       "date": "2026-11-22",

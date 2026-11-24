@@ -10,8 +10,8 @@ One write workload measures Squirix SET and etcd PUT. A separate read workload m
 - Send measured requests over TLS on the first node's loopback interface. Select Squirix keys whose primary group is on the first node.
 - Check all three Squirix nodes before and after each trial. Node A must report copies B and C as ready for group A.
   Elect etcd node A and verify all three members agree on its leadership and term before and after the trial.
-- Preload 1,024 keys with 256-byte JSON values. Use 48 persistent gRPC sessions with one in-flight request per session.
-  Squirix uses its published SDK and bearer authentication. etcd uses its gRPC KV API with server TLS and application authentication disabled.
+- Preload 1,024 keys with 256-byte JSON values. Use 48 persistent TLS sessions with one in-flight request per session.
+  Squirix uses its published SDK, binary protocol and bearer authentication. etcd uses its gRPC KV API with server TLS and application authentication disabled.
 - Squirix uses replication factor three, persistence and quorum reads. etcd uses its default durable Raft path and linearizable reads.
 
 ## Measurement
@@ -36,10 +36,10 @@ Run these commands from the repository root.
 
 ~~~powershell
 dotnet build quorum/CacheQuorum.csproj --configuration Release
-$package = "single-node/squirix.server.tool.0.1.0-preview.10.nupkg"
-$url = "https://api.nuget.org/v3-flatcontainer/squirix.server.tool/0.1.0-preview.10/squirix.server.tool.0.1.0-preview.10.nupkg"
+$package = "single-node/squirix.server.tool.0.2.0-preview.1.nupkg"
+$url = "https://api.nuget.org/v3-flatcontainer/squirix.server.tool/0.2.0-preview.1/squirix.server.tool.0.2.0-preview.1.nupkg"
 Invoke-WebRequest -Uri $url -OutFile $package
-$expected = '9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405'
+$expected = '18134970897cd20ca3b5c078c455fcbec83e8c92c1b2dc8af1d1ce08d5852586'
 if ((Get-FileHash -LiteralPath $package -Algorithm SHA256).Hash -ine $expected) { throw 'Unexpected Squirix package checksum' }
 python -m zipfile -e $package single-node/server-package
 dotnet quorum/bin/Release/net10.0/CacheQuorum.dll prepare quorum/.local

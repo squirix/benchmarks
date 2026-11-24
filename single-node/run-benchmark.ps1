@@ -23,8 +23,9 @@ $runId = [Guid]::NewGuid().ToString('N').Substring(0, 8)
 $seconds = 6
 $rates = '2000,5000,8000,20000'
 $outputRoot = Join-Path $PSScriptRoot 'measurements'
+$trialNumbers = $Repetitions
 if ($Pilot) {
-    $Repetitions = @(0)
+    $trialNumbers = @(0)
     $seconds = 2
     $rates = '2000,20000'
     $outputRoot = Join-Path $PSScriptRoot 'pilot'
@@ -44,7 +45,7 @@ $orders = @(
     @('Redis', 'Valkey', 'Garnet', 'Squirix')
 )
 
-foreach ($repetition in $Repetitions) {
+foreach ($repetition in $trialNumbers) {
     $order = $orders[[Math]::Max(0, $repetition - 1)]
     foreach ($system in $order) {
         if ($system -notin $Only) { continue }
@@ -61,8 +62,8 @@ foreach ($repetition in $Repetitions) {
         switch ($system) {
             'Squirix' {
                 $server += @('--mount', "type=bind,source=$sourceRoot/server-package/tools/net10.0/any,target=/server,readonly",
-                    '--env', 'ASPNETCORE_Kestrel__Certificates__Default__Path=/certs/server.pfx',
-                    '--env', 'ASPNETCORE_Kestrel__Certificates__Default__Password=benchmark-cert',
+                    '--env', 'SQUIRIX_TLS_CERTIFICATE_PATH=/certs/server.pfx',
+                    '--env', 'SQUIRIX_TLS_CERTIFICATE_PASSWORD=benchmark-cert',
                     '--env', 'Logging__LogLevel__Default=Warning',
                     $aspnetImage, 'dotnet', '/server/Squirix.Server.Host.dll',
                     'run', '--urls', 'https://127.0.0.1:6380')

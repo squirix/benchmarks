@@ -6,8 +6,9 @@
     <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Squirix" Version="0.1.0-preview.10" />
+    <PackageReference Include="Squirix" Version="0.2.0-preview.1" />
     <PackageReference Include="Google.Protobuf" Version="3.36.2" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.85.0" />
     <PackageReference Include="Grpc.Tools" Version="2.85.0" PrivateAssets="all" />
     <PackageReference Include="System.IO.Hashing" Version="10.0.14" />
     <Compile Include="../single-node/LoadMeasurement.cs" Link="LoadMeasurement.cs" />
