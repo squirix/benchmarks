@@ -8,7 +8,7 @@ This benchmark measures end-to-end GET and SET latency at fixed offered request 
 - Launch one server at a time. For the first series, the server was pinned to guest CPUs 12–15 with a 4 GiB limit.
   The load client used guest CPUs 16–23 with a 3 GiB limit. The containers shared the server’s loopback network namespace.
 - Preload all keys. Use 48 persistent TLS sessions with one outstanding operation per session. Validate returned values and write acknowledgments.
-- Use the published Squirix SDK for Squirix. The first run used gRPC. The same minimal RESP2 adapter drives Garnet, Valkey and Redis.
+- Use the published Squirix SDK for Squirix. The current runner uses the Squirix binary protocol over TLS. The same minimal RESP2 adapter drives Garnet, Valkey and Redis.
 - Use the same test certificate, offered rates and deterministic request sequence for each system in a repetition. Disable persistence.
   Record the image digests and any server options.
 
@@ -35,10 +35,10 @@ From the repository root, build the generator and fetch the published Squirix se
 ~~~powershell
 Set-Location single-node
 dotnet build CacheLoad.csproj --configuration Release
-$package = "squirix.server.tool.0.1.0-preview.10.nupkg"
-$url = "https://api.nuget.org/v3-flatcontainer/squirix.server.tool/0.1.0-preview.10/$package"
+$package = "squirix.server.tool.0.2.0-preview.1.nupkg"
+$url = "https://api.nuget.org/v3-flatcontainer/squirix.server.tool/0.2.0-preview.1/$package"
 Invoke-WebRequest -Uri $url -OutFile $package
-$expected = '9a124929a6147a93944917620fbf15907cd1ff7b02e473b08f942a238872b405'
+$expected = '18134970897cd20ca3b5c078c455fcbec83e8c92c1b2dc8af1d1ce08d5852586'
 if ((Get-FileHash -LiteralPath $package -Algorithm SHA256).Hash -ine $expected) { throw 'Unexpected Squirix package checksum' }
 python -m zipfile -e $package server-package
 dotnet bin/Release/net10.0/CacheLoad.dll certificates certs

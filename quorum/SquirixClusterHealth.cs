@@ -12,7 +12,7 @@ internal sealed class SquirixClusterHealth : IDisposable
 {
     private readonly HttpClient _client = new()
     {
-        DefaultRequestVersion = HttpVersion.Version20,
+        DefaultRequestVersion = HttpVersion.Version11,
         DefaultVersionPolicy = HttpVersionPolicy.RequestVersionExact,
         Timeout = TimeSpan.FromSeconds(4),
     };
@@ -53,7 +53,7 @@ internal sealed class SquirixClusterHealth : IDisposable
 
     private async Task<ClusterNode> ReadNodeAsync(string node, CancellationToken cancellationToken)
     {
-        var endpoint = $"https://node-{node.ToLowerInvariant()}:5000";
+        var endpoint = $"https://node-{node.ToLowerInvariant()}:5002";
         using var ready = await _client.GetAsync(endpoint + "/health/ready", cancellationToken);
         _ = ready.EnsureSuccessStatusCode();
         using var details = JsonDocument.Parse(await _client.GetStringAsync(endpoint + "/health/ready/details", cancellationToken));

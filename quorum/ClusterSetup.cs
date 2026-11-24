@@ -17,7 +17,7 @@ internal static class ClusterSetup
 
     internal static string[] SelectKeys()
     {
-        // This is the route encoding and consistent-hash ring of Squirix v0.1.0-preview.10.
+        // This is the route encoding and consistent-hash ring of Squirix v0.2.0-preview.1.
         const string cache = "local-benchmark";
         var ring = "ABC".SelectMany(static node => Enumerable.Range(0, 128)
                 .Select(index => (Hash: Hash(FormattableString.Invariant($"{node}#{index}")), Node: node)))
